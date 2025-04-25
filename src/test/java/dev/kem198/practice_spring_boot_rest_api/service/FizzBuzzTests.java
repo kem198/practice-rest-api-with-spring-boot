@@ -12,50 +12,50 @@ public class FizzBuzzTests {
     private FizzBuzz fizzBuzz;
 
     @BeforeEach
-    void BeforeEach() {
+    void setUp() {
         fizzBuzz = new FizzBuzz();
     }
 
     @Nested
     @DisplayName("Convert メソッドは数を文字列に変換する")
-    class ConvertMethodIsConvertToStringFromNum {
+    class ConvertMethod {
 
         @Nested
-        @DisplayName("3 の倍数のときは数の代わりに「Fizz」に変換する")
-        class ConvertToFizzWhenPassedMultipleBy3 {
+        @DisplayName("3 の倍数の場合は「Fizz」に変換する")
+        class ConvertsMultiplesOf3ToFizz {
             @Test
-            @DisplayName("3 を渡すと文字列 Fizz を返すこと")
-            void shouldReturnFizzWhenPassed3() {
+            @DisplayName("3 を渡すと文字列 Fizz を返す")
+            void returnsFizzFor3() {
                 assertEquals("Fizz", fizzBuzz.convert(3));
             }
         }
 
         @Nested
-        @DisplayName("5 の倍数のときは数の代わりに「Fizz」に変換する")
-        class ConvertToBuzzWhenPassedMultipleBy5 {
+        @DisplayName("5 の倍数の場合は「Fizz」に変換する")
+        class ConvertsMultiplesOf5ToBuzz {
             @Test
-            @DisplayName("5 を渡すと文字列 Buzz を返すこと")
-            void shouldReturnBuzzWhenPassed5() {
+            @DisplayName("5 を渡すと文字列 Buzz を返す")
+            void returnsBuzzFor5() {
                 assertEquals("Buzz", fizzBuzz.convert(5));
             }
         }
 
         @Nested
-        @DisplayName("3 と 5 両方の倍数のときは数の代わりに「FizzBuzz」に変換する")
-        class ConvertToFizzBuzzWhenPassedMultipleBy3and5 {
+        @DisplayName("3 と 5 両方の倍数の場合は「FizzBuzz」に変換する")
+        class ConvertsMultiplesOf3And5ToFizzBuzz {
             @Test
-            @DisplayName("15 を渡すと文字列 FizzBuzz を返すこと")
-            void shouldReturnFizzBuzzWhenPassed15() {
+            @DisplayName("15 を渡すと文字列 FizzBuzz を返す")
+            void returnsFizzBuzzFor15() {
                 assertEquals("FizzBuzz", fizzBuzz.convert(15));
             }
         }
 
         @Nested
-        @DisplayName("その他の数のときはそのまま文字列に変換する")
-        class ConvertToStringFromOthers {
+        @DisplayName("その他の数の場合はそのまま文字列に変換する")
+        class ConvertsOtherNumbersToString {
             @Test
-            @DisplayName("1 を渡すと文字列 1 を返すこと")
-            void shouldReturn1WhenPassed1() {
+            @DisplayName("1 を渡すと文字列 1 を返す")
+            void returns1For1() {
                 assertEquals("1", fizzBuzz.convert(1));
             }
         }
