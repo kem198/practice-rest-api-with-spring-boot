@@ -79,10 +79,11 @@ $ curl 'http://localhost:8080/greeting?name=kem198'
 
 ## References
 
-### Installation
+### Setup
 
 - [SDK Installation Candidates \| SDKMAN! the Software Development Kit Manager](https://sdkman.io/sdks/)
 - [Spring Boot in Visual Studio Code](https://code.visualstudio.com/docs/java/java-spring-boot)
+- [Java formatting and linting](https://code.visualstudio.com/docs/java/java-linting)
 
 ### Getting Started
 
