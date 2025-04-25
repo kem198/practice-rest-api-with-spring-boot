@@ -74,7 +74,7 @@ $ curl 'http://localhost:8080/greeting'
 
 # Call the personalized greeting
 $ curl 'http://localhost:8080/greeting?name=kem198'
-{"id":2,"content":"Hello, kem198!"}
+{"id":2,"content":"Hello, kem198!"}%
 ```
 
 ## References
