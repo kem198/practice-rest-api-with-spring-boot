@@ -16,4 +16,14 @@ public class FizzBuzzTests {
         // Act & Assert
         assertEquals("1", fizzbuzz.convert(1));
     }
+
+    @Test
+    @DisplayName("2 を渡すと 2 が返ること")
+    void shouldReturn2WhenPassed2() {
+        // Arrange
+        FizzBuzz fizzbuzz = new FizzBuzz();
+
+        // Act & Assert
+        assertEquals("2", fizzbuzz.convert(2));
+    }
 }
