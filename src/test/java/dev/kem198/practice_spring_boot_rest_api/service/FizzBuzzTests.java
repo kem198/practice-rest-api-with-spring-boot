@@ -10,16 +10,10 @@ public class FizzBuzzTests {
     @Test
     @DisplayName("1 を渡すと 1 が返ること")
     void shouldReturn1WhenPassed1() {
-        // Arrange (準備)
-        FizzBuzz fizzbuzz = new FizzBuzz(); // ★3 ここから書く！「準備」から書く！
+        // Arrange
+        FizzBuzz fizzbuzz = new FizzBuzz();
 
-        // Act (実行)
-        // ★2 使う側の視点でメソッド名を考える！
-        String actual = fizzbuzz.convert(1);
-
-        // Assert (検証)
-        // ★1 ここから書く！「期待値」から書く！
-        assertEquals("1", actual);
+        // Act & Assert
+        assertEquals("1", fizzbuzz.convert(1));
     }
-
 }
