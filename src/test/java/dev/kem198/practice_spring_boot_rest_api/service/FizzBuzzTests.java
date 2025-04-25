@@ -41,6 +41,16 @@ public class FizzBuzzTests {
         }
 
         @Nested
+        @DisplayName("3 と 5 両方の倍数のときは数の代わりに「FizzBuzz」に変換する")
+        class ConvertToFizzBuzzWhenPassedMultipleBy3and5 {
+            @Test
+            @DisplayName("15 を渡すと文字列 FizzBuzz を返すこと")
+            void shouldReturnFizzBuzzWhenPassed15() {
+                assertEquals("FizzBuzz", fizzBuzz.convert(15));
+            }
+        }
+
+        @Nested
         @DisplayName("その他の数のときはそのまま文字列に変換する")
         class ConvertToStringFromOthers {
             @Test
