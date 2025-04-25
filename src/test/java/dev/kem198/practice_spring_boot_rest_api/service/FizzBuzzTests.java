@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 public class FizzBuzzTests {
 
     @Test
-    @DisplayName("1 を渡すと 1 が返ること")
+    @DisplayName("1 を渡すと文字列 1 を返すこと")
     void shouldReturn1WhenPassed1() {
         // Arrange
         FizzBuzz fizzbuzz = new FizzBuzz();
@@ -18,8 +18,18 @@ public class FizzBuzzTests {
     }
 
     @Test
-    @DisplayName("2 を渡すと 2 が返ること")
+    @DisplayName("2 を渡すと文字列 2 を返すこと")
     void shouldReturn2WhenPassed2() {
+        // Arrange
+        FizzBuzz fizzbuzz = new FizzBuzz();
+
+        // Act & Assert
+        assertEquals("2", fizzbuzz.convert(2));
+    }
+
+    @Test
+    @DisplayName("3 を渡すと文字列 Fizz を返すこと")
+    void shouldReturnFizzWhenPassed3() {
         // Arrange
         FizzBuzz fizzbuzz = new FizzBuzz();
 
