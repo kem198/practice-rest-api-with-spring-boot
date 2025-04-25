@@ -11,7 +11,6 @@ public class FizzBuzzUtilsTests {
     @Nested
     @DisplayName("Convert メソッドは数を文字列に変換する")
     class ConvertMethod {
-
         @Nested
         @DisplayName("3 の倍数の場合は「Fizz」に変換する")
         class ConvertsMultiplesOf3ToFizz {
