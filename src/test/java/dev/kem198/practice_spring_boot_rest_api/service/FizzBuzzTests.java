@@ -30,6 +30,12 @@ public class FizzBuzzTests {
     @Test
     @DisplayName("3 を渡すと文字列 Fizz を返すこと")
     void shouldReturnFizzWhenPassed3() {
-        assertEquals("2", fizzBuzz.convert(2));
+        assertEquals("Fizz", fizzBuzz.convert(3));
+    }
+
+    @Test
+    @DisplayName("5 を渡すと文字列 Buzz を返すこと")
+    void shouldReturnBuzzWhenPassed5() {
+        assertEquals("Buzz", fizzBuzz.convert(5));
     }
 }
