@@ -12,9 +12,9 @@ public class GreetingControllerTests {
         assertEquals(1, 1);
     }
 
-    @Test
-    @DisplayName("JUnit の動作確認用 失敗")
-    void checkTestFail() {
-        assertEquals(1, 0);
-    }
+    // @Test
+    // @DisplayName("JUnit の動作確認用 失敗")
+    // void checkTestFail() {
+    // assertEquals(1, 0);
+    // }
 }
