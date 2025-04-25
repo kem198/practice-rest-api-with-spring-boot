@@ -1,7 +1,6 @@
 package dev.kem198.practice_spring_boot_rest_api.service;
 
 public class FizzBuzz {
-
     public String convert(int num) {
         if (num % 3 == 0 && num % 5 == 0) {
             return "FizzBuzz";
@@ -14,5 +13,4 @@ public class FizzBuzz {
         }
         return String.valueOf(num);
     }
-
 }
