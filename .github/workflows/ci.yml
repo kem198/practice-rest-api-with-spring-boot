@@ -28,9 +28,9 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-      - name: Build and Test
+      - name: Build
         run: ./gradlew build --no-daemon
-      - name: Run Tests
+      - name: Test
         run: ./gradlew test --no-daemon
-      - name: Run Checkstyle (or Lint)
+      - name: Lint
         run: ./gradlew check --no-daemon
