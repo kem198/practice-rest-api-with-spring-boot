@@ -2,20 +2,12 @@ package dev.kem198.practice_spring_boot_rest_api.utils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("Fizz Buzz 数列と変換規則を扱う FizzBuzzUtils クラス")
 public class FizzBuzzUtilsTests {
-    private FizzBuzzUtils fizzBuzz;
-
-    @BeforeEach
-    void setUp() {
-        fizzBuzz = new FizzBuzzUtils();
-    }
-
     @Nested
     @DisplayName("Convert メソッドは数を文字列に変換する")
     class ConvertMethod {
@@ -26,7 +18,7 @@ public class FizzBuzzUtilsTests {
             @Test
             @DisplayName("3 を渡すと文字列 Fizz を返す")
             void returnsFizzFor3() {
-                assertEquals("Fizz", fizzBuzz.convert(3));
+                assertEquals("Fizz", FizzBuzzUtils.convert(3));
             }
         }
 
@@ -36,7 +28,7 @@ public class FizzBuzzUtilsTests {
             @Test
             @DisplayName("5 を渡すと文字列 Buzz を返す")
             void returnsBuzzFor5() {
-                assertEquals("Buzz", fizzBuzz.convert(5));
+                assertEquals("Buzz", FizzBuzzUtils.convert(5));
             }
         }
 
@@ -46,7 +38,7 @@ public class FizzBuzzUtilsTests {
             @Test
             @DisplayName("15 を渡すと文字列 FizzBuzz を返す")
             void returnsFizzBuzzFor15() {
-                assertEquals("FizzBuzz", fizzBuzz.convert(15));
+                assertEquals("FizzBuzz", FizzBuzzUtils.convert(15));
             }
         }
 
@@ -56,7 +48,7 @@ public class FizzBuzzUtilsTests {
             @Test
             @DisplayName("1 を渡すと文字列 1 を返す")
             void returns1For1() {
-                assertEquals("1", fizzBuzz.convert(1));
+                assertEquals("1", FizzBuzzUtils.convert(1));
             }
         }
     }

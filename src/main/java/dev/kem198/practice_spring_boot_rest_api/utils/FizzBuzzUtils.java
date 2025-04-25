@@ -1,7 +1,7 @@
 package dev.kem198.practice_spring_boot_rest_api.utils;
 
 public class FizzBuzzUtils {
-    public String convert(int num) {
+    public static String convert(int num) {
         if (num % 3 == 0 && num % 5 == 0) {
             return "FizzBuzz";
         }
