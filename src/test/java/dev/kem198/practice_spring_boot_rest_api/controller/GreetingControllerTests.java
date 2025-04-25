@@ -12,8 +12,6 @@ public class GreetingControllerTests {
         assertEquals(1, 1);
     }
 
-    test ci
-
     // @Test
     // @DisplayName("JUnit の動作確認用 失敗")
     // void checkTestFail() {
