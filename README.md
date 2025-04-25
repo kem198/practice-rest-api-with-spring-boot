@@ -33,7 +33,7 @@ OpenJDK Runtime Environment Temurin-21.0.6+7 (build 21.0.6+7-LTS)
 OpenJDK 64-Bit Server VM Temurin-21.0.6+7 (build 21.0.6+7-LTS, mixed mode, sharing)
 
 $ pwd
-/your/projects/dir/practice-spring-boot-rest-api
+/path/to/your/repo/practice-spring-boot-rest-api
 ```
 
 ### for Development
