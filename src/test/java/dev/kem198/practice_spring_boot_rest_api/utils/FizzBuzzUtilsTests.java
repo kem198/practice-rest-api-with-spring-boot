@@ -1,4 +1,4 @@
-package dev.kem198.practice_spring_boot_rest_api.service;
+package dev.kem198.practice_spring_boot_rest_api.utils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -7,13 +7,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-@DisplayName("Fizz Buzz 数列と変換規則を扱う FizzBuzz クラス")
-public class FizzBuzzTests {
-    private FizzBuzz fizzBuzz;
+@DisplayName("Fizz Buzz 数列と変換規則を扱う FizzBuzzUtils クラス")
+public class FizzBuzzUtilsTests {
+    private FizzBuzzUtils fizzBuzz;
 
     @BeforeEach
     void setUp() {
-        fizzBuzz = new FizzBuzz();
+        fizzBuzz = new FizzBuzzUtils();
     }
 
     @Nested
