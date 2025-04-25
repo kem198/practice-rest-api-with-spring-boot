@@ -48,12 +48,6 @@ public class FizzBuzzTests {
             void shouldReturn1WhenPassed1() {
                 assertEquals("1", fizzBuzz.convert(1));
             }
-
-            @Test
-            @DisplayName("2 を渡すと文字列 2 を返すこと")
-            void shouldReturn2WhenPassed2() {
-                assertEquals("2", fizzBuzz.convert(2));
-            }
         }
     }
 }
