@@ -57,7 +57,7 @@ SDKMAN!
 script: 5.19.0
 native: 0.7.4 (linux x86_64)
 
-# Install OpenJDK (Eclipse Temurin Java 21.0.6)
+# Install OpenJDK 21 (Eclipse Temurin Java 21.0.6)
 $ sdk install java 21.0.6-tem
 $ java --version
 openjdk 21.0.6 2025-01-21 LTS
