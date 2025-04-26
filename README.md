@@ -1,6 +1,9 @@
-# Practice - Spring Boot & REST API
 
-A simple project to practice creating a REST API with Spring Boot.
+This project is designed to practice the following:
+
+- Building a REST API
+- Using Spring Boot
+- Applying Test-Driven Development (TDD)
 
 ## Requirements
 
