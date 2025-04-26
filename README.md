@@ -69,7 +69,7 @@ $ cd /path/to/your/repo/
 $ git clone https://github.com/kem198/practice-rest-api-with-spring-boot.git
 ```
 
-### Build & Run
+### Build and Run
 
 ```shell
 # Move repository root
@@ -84,10 +84,11 @@ $ ./gradlew build
 $ java -jar build/libs/practice-rest-api-with-spring-boot-0.0.1-SNAPSHOT.jar
 ```
 
-### Call API
+### Request to the APIs
+
+Request `/greeting` :
 
 ```sh
-# Call /greeting
 $ curl 'http://localhost:8080/greeting'
 {"id":1,"content":"Hello, World!"}%
 
@@ -95,8 +96,9 @@ $ curl 'http://localhost:8080/greeting?name=kem198'
 {"id":2,"content":"Hello, kem198!"}%
 ```
 
+Request `/fizzbuzz` :
+
 ```sh
-# Call /fizzbuzz
 $ curl -i "http://localhost:8080/fizzbuzz?num=3"
 HTTP/1.1 200
 Content-Type: application/json
