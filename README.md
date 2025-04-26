@@ -39,9 +39,10 @@ java -jar build/libs/practice-rest-api-with-spring-boot-0.0.1-SNAPSHOT.jar
 
 ## Example Usage
 
-### Environment
+### Setup
 
 ```shell
+# Example Environment: Ubuntu 24.04 on WSL
 $ lsb_release -a
 No LSB modules are available.
 Distributor ID: Ubuntu
@@ -49,21 +50,30 @@ Description:    Ubuntu 24.04.2 LTS
 Release:        24.04
 Codename:       noble
 
+# Install SDKMAN!
+$ curl -s "https://get.sdkman.io" | bash
 $ sdk version
 SDKMAN!
 script: 5.19.0
 native: 0.7.4 (linux x86_64)
 
+# Install OpenJDK (Eclipse Temurin Java 21.0.6)
+$ sdk install java 21.0.6-tem
 $ java --version
 openjdk 21.0.6 2025-01-21 LTS
 OpenJDK Runtime Environment Temurin-21.0.6+7 (build 21.0.6+7-LTS)
 OpenJDK 64-Bit Server VM Temurin-21.0.6+7 (build 21.0.6+7-LTS, mixed mode, sharing)
+
+# Clone This repository
+$ cd /path/to/your/repo/
+$ git clone https://github.com/kem198/practice-rest-api-with-spring-boot.git
 ```
 
 ### Build & Run
 
 ```shell
-# Currently here:
+# Move repository root
+$ cd practice-rest-api-with-spring-boot
 $ pwd
 /path/to/your/repo/practice-rest-api-with-spring-boot
 
@@ -72,7 +82,6 @@ $ ./gradlew build
 
 # Run the application
 $ java -jar build/libs/practice-rest-api-with-spring-boot-0.0.1-SNAPSHOT.jar
-
 ```
 
 ### Call API
