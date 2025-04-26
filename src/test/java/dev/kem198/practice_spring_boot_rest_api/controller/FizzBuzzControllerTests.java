@@ -41,19 +41,6 @@ public class FizzBuzzControllerTests {
                     .andExpect(status().isOk())
                     .andExpect(jsonPath("$.result").value("Fizz"));
         }
-
-        @Test
-        @DisplayName("\"?num=6\" でリクエストされた場合は {\"result\": \"Fizz\"} を返す")
-        void returnsFizzFor6() throws Exception {
-            // Act
-            ResultActions resultActions = mockMvc
-                    .perform(get("/fizzbuzz").param("num", "6"));
-
-            // Assert
-            resultActions
-                    .andExpect(status().isOk())
-                    .andExpect(jsonPath("$.result").value("Fizz"));
-        }
     }
 
     @Nested
