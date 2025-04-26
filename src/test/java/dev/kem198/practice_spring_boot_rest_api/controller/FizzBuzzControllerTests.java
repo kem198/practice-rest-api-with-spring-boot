@@ -5,7 +5,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+
+@WebMvcTest(FizzBuzzController.class)
 @DisplayName("FizzBuzz の変換リクエストを待ち受ける FizzBuzzController クラス")
 public class FizzBuzzControllerTests {
     @Test
@@ -14,20 +23,23 @@ public class FizzBuzzControllerTests {
         assertEquals(1, 1);
     }
 
+    @Autowired
+    private MockMvc mockMvc;
+
     @Nested
     @DisplayName("3 で割り切れる数値を渡した場合は文字列 \"Fizz\" を返す")
     class ReturnsFizzForMultiplesOf3 {
         @Test
         @DisplayName("3 を渡された場合は {\"result\": \"Fizz\"} を返す")
-        void returnsFizzFor3() {
-            // Arrange
-            FizzBuzzController fizzBuzzController = new FizzBuzzController();
-
+        void returnsFizzFor3() throws Exception {
             // Act
-            String actual = fizzBuzzController.execute("3");
+            ResultActions resultActions = mockMvc
+                    .perform(get("/fizzbuzz").param("num", "3"));
 
             // Assert
-            assertEquals("{\"result\": \"Fizz\"}", actual);
+            resultActions
+                    .andExpect(status().isOk())
+                    .andExpect(jsonPath("$.result").value("Fizz"));
         }
     }
 }
