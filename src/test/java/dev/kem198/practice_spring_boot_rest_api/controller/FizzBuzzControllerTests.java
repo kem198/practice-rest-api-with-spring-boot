@@ -41,5 +41,69 @@ public class FizzBuzzControllerTests {
                     .andExpect(status().isOk())
                     .andExpect(jsonPath("$.result").value("Fizz"));
         }
+
+        @Test
+        @DisplayName("\"?num=6\" でリクエストされた場合は {\"result\": \"Fizz\"} を返す")
+        void returnsFizzFor6() throws Exception {
+            // Act
+            ResultActions resultActions = mockMvc
+                    .perform(get("/fizzbuzz").param("num", "6"));
+
+            // Assert
+            resultActions
+                    .andExpect(status().isOk())
+                    .andExpect(jsonPath("$.result").value("Fizz"));
+        }
+    }
+
+    @Nested
+    @DisplayName("5 で割り切れる数値を渡した場合は文字列 \"Buzz\" を返す")
+    class ReturnsBuzzForMultiplesOf5 {
+        @Test
+        @DisplayName("\"?num=5\" でリクエストされた場合は {\"result\": \"Buzz\"} を返す")
+        void returnsBuzzFor5() throws Exception {
+            // Act
+            ResultActions resultActions = mockMvc
+                    .perform(get("/fizzbuzz").param("num", "5"));
+
+            // Assert
+            resultActions
+                    .andExpect(status().isOk())
+                    .andExpect(jsonPath("$.result").value("Buzz"));
+        }
+    }
+
+    @Nested
+    @DisplayName("3 かつ 5 で割り切れる数値を渡した場合は文字列 \"FizzBuzz\" を返す")
+    class ReturnsFizzBuzzForMultiplesOf3and5 {
+        @Test
+        @DisplayName("\"?num=15\" でリクエストされた場合は {\"result\": \"FizzBuzz\"} を返す")
+        void returnsFizzBuzzFor15() throws Exception {
+            // Act
+            ResultActions resultActions = mockMvc
+                    .perform(get("/fizzbuzz").param("num", "15"));
+
+            // Assert
+            resultActions
+                    .andExpect(status().isOk())
+                    .andExpect(jsonPath("$.result").value("FizzBuzz"));
+        }
+    }
+
+    @Nested
+    @DisplayName("どれでもない数値文字列を渡した場合はそのまま返す")
+    class ReturnsNumberStringForOthers {
+        @Test
+        @DisplayName("\"?num=1\" でリクエストされた場合は {\"result\": \"1\"} を返す")
+        void returns1For1() throws Exception {
+            // Act
+            ResultActions resultActions = mockMvc
+                    .perform(get("/fizzbuzz").param("num", "1"));
+
+            // Assert
+            resultActions
+                    .andExpect(status().isOk())
+                    .andExpect(jsonPath("$.result").value("1"));
+        }
     }
 }
