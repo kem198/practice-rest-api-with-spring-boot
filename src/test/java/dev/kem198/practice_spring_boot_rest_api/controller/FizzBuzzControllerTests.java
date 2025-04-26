@@ -123,5 +123,19 @@ public class FizzBuzzControllerTests {
                     .andExpect(jsonPath("$.error").value("Missing required parameter"))
                     .andExpect(jsonPath("$.message").value("The 'num' query parameter is required."));
         }
+
+        @Test
+        @DisplayName("数値として扱えない値でリクエストされた場合は所定のエラーレスポンスを返す")
+        void returnsErrorResponseForInvalidNumber() throws Exception {
+            // Act
+            ResultActions resultActions = mockMvc
+                    .perform(get("/fizzbuzz").param("num", "abc"));
+
+            // Assert
+            resultActions
+                    .andExpect(status().isBadRequest())
+                    .andExpect(jsonPath("$.error").value("Invalid number format"))
+                    .andExpect(jsonPath("$.message").value("The 'num' query parameter must be a valid integer."));
+        }
     }
 }

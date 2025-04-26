@@ -16,12 +16,19 @@ import dev.kem198.practice_spring_boot_rest_api.utils.FizzBuzzUtils;
 public class FizzBuzzController {
 
     @GetMapping("/fizzbuzz")
-    public String execute(@RequestParam(value = "num") String numberString) {
-        int num;
-        num = Integer.parseInt(numberString);
-
-        String result = FizzBuzzUtils.convert(num);
-        return String.format("{\"result\": \"%s\"}", result);
+    public ResponseEntity<Map<String, String>> execute(
+            @RequestParam(value = "num", required = true) String numberString) {
+        try {
+            int number = Integer.parseInt(numberString);
+            String result = FizzBuzzUtils.convert(number);
+            return ResponseEntity.ok(Map.of("result", result));
+        } catch (NumberFormatException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(Map.of(
+                            "error", "Invalid number format",
+                            "message", "The 'num' query parameter must be a valid integer."));
+        }
+    }
 
     @ExceptionHandler(MissingServletRequestParameterException.class)
     public ResponseEntity<Map<String, String>> handleMissingParams(MissingServletRequestParameterException ex) {
