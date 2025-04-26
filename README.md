@@ -20,13 +20,13 @@ A simple project to practice creating a REST API with Spring Boot.
 ./gradlew bootRun
 ```
 
-### Build the Application
+### Build
 
 ```shell
 ./gradlew build
 ```
 
-### Run the Application
+### Run
 
 ```shell
 java -jar build/libs/practice-spring-boot-rest-api-0.0.1-SNAPSHOT.jar
@@ -55,7 +55,7 @@ OpenJDK Runtime Environment Temurin-21.0.6+7 (build 21.0.6+7-LTS)
 OpenJDK 64-Bit Server VM Temurin-21.0.6+7 (build 21.0.6+7-LTS, mixed mode, sharing)
 ```
 
-### Build & Run & Call
+### Build & Run
 
 ```shell
 # Currently here:
@@ -68,13 +68,46 @@ $ ./gradlew build
 # Run the application
 $ java -jar build/libs/practice-spring-boot-rest-api-0.0.1-SNAPSHOT.jar
 
-# Call the default greeting
+```
+
+### Call API
+
+```sh
+# Call /greeting
 $ curl 'http://localhost:8080/greeting'
 {"id":1,"content":"Hello, World!"}%
 
-# Call the personalized greeting
 $ curl 'http://localhost:8080/greeting?name=kem198'
 {"id":2,"content":"Hello, kem198!"}%
+```
+
+```sh
+# Call /fizzbuzz
+$ curl -i "http://localhost:8080/fizzbuzz?num=3"
+HTTP/1.1 200
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sat, 26 Apr 2025 01:36:35 GMT
+
+{"result":"Fizz"}%
+
+$ curl -i "http://localhost:8080/fizzbuzz"
+HTTP/1.1 400
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sat, 26 Apr 2025 01:35:36 GMT
+Connection: close
+
+{"error":"Missing required parameter","message":"The 'num' query parameter is required."}%
+
+$ curl -i "http://localhost:8080/fizzbuzz?num=abc"
+HTTP/1.1 400
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sat, 26 Apr 2025 01:35:48 GMT
+Connection: close
+
+{"error":"Invalid number format","message":"The 'num' query parameter must be a valid integer."}%
 ```
 
 ## References
