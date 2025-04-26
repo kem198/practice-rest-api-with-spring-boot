@@ -91,7 +91,7 @@ $ git clone https://github.com/kem198/practice-rest-api-with-spring-boot.git
 ### Build and Run
 
 ```shell
-# Move repository root
+# Move to repository root
 $ cd practice-rest-api-with-spring-boot
 $ pwd
 /path/to/your/repo/practice-rest-api-with-spring-boot
