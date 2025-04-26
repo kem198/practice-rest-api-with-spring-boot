@@ -1,4 +1,4 @@
-package dev.kem198.practice_spring_boot_rest_api.controller;
+package net.kem198.practice_rest_api_with_spring_boot.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

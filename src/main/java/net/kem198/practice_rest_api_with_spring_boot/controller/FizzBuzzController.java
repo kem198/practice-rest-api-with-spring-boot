@@ -1,4 +1,4 @@
-package dev.kem198.practice_spring_boot_rest_api.controller;
+package net.kem198.practice_rest_api_with_spring_boot.controller;
 
 import java.util.Map;
 
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import dev.kem198.practice_spring_boot_rest_api.utils.FizzBuzzUtils;
+import net.kem198.practice_rest_api_with_spring_boot.utils.FizzBuzzUtils;
 
 @RestController
 public class FizzBuzzController {

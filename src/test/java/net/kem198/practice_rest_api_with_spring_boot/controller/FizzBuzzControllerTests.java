@@ -1,4 +1,4 @@
-package dev.kem198.practice_spring_boot_rest_api.controller;
+package net.kem198.practice_rest_api_with_spring_boot.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+
+import net.kem198.practice_rest_api_with_spring_boot.controller.FizzBuzzController;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;

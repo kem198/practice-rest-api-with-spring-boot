@@ -1,3 +1,4 @@
+# Practice - REST API with Spring Boot
 
 This project is designed to practice the following:
 
@@ -32,7 +33,7 @@ This project is designed to practice the following:
 ### Run
 
 ```shell
-java -jar build/libs/practice-spring-boot-rest-api-0.0.1-SNAPSHOT.jar
+java -jar build/libs/practice-rest-api-with-spring-boot-0.0.1-SNAPSHOT.jar
 ```
 
 ## Example Usage
@@ -63,13 +64,13 @@ OpenJDK 64-Bit Server VM Temurin-21.0.6+7 (build 21.0.6+7-LTS, mixed mode, shari
 ```shell
 # Currently here:
 $ pwd
-/path/to/your/repo/practice-spring-boot-rest-api
+/path/to/your/repo/practice-rest-api-with-spring-boot
 
 # Build the application
 $ ./gradlew build
 
 # Run the application
-$ java -jar build/libs/practice-spring-boot-rest-api-0.0.1-SNAPSHOT.jar
+$ java -jar build/libs/practice-rest-api-with-spring-boot-0.0.1-SNAPSHOT.jar
 
 ```
 

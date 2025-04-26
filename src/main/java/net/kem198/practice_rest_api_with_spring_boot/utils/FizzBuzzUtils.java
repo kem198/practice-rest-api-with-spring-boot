@@ -1,4 +1,4 @@
-package dev.kem198.practice_spring_boot_rest_api.utils;
+package net.kem198.practice_rest_api_with_spring_boot.utils;
 
 public class FizzBuzzUtils {
     public static String convert(int num) {

@@ -1,10 +1,10 @@
-package dev.kem198.practice_spring_boot_rest_api;
+package net.kem198.practice_rest_api_with_spring_boot;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PracticeSpringBootRestApiApplicationTests {
+class PracticeRestApiWithSpringBootApplicationTests {
 
 	@Test
 	void contextLoads() {

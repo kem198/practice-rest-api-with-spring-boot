@@ -1,4 +1,4 @@
-package dev.kem198.practice_spring_boot_rest_api.controller;
+package net.kem198.practice_rest_api_with_spring_boot.controller;
 
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import dev.kem198.practice_spring_boot_rest_api.model.Greeting;
+import net.kem198.practice_rest_api_with_spring_boot.model.Greeting;
 
 @RestController
 public class GreetingController {

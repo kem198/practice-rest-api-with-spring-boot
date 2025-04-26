@@ -1,10 +1,12 @@
-package dev.kem198.practice_spring_boot_rest_api.utils;
+package net.kem198.practice_rest_api_with_spring_boot.utils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+
+import net.kem198.practice_rest_api_with_spring_boot.utils.FizzBuzzUtils;
 
 @DisplayName("Fizz Buzz 数列と変換規則を扱う FizzBuzzUtils クラス")
 public class FizzBuzzUtilsTests {
