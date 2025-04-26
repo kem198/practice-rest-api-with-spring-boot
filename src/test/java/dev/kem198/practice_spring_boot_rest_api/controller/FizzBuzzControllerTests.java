@@ -30,7 +30,7 @@ public class FizzBuzzControllerTests {
     @DisplayName("3 で割り切れる数値を渡した場合は文字列 \"Fizz\" を返す")
     class ReturnsFizzForMultiplesOf3 {
         @Test
-        @DisplayName("3 を渡された場合は {\"result\": \"Fizz\"} を返す")
+        @DisplayName("\"?num=3\" でリクエストされた場合は {\"result\": \"Fizz\"} を返す")
         void returnsFizzFor3() throws Exception {
             // Act
             ResultActions resultActions = mockMvc
