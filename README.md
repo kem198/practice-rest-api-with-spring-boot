@@ -1,3 +1,4 @@
+<!-- omit in toc -->
 # Practice - REST API with Spring Boot
 
 This project is designed to practice the following:
@@ -6,6 +7,24 @@ This project is designed to practice the following:
 - Using Spring Boot
 - Applying Test-Driven Development (TDD)
 - Implementing Continuous Integration (CI) for Java applications
+
+<!-- omit in toc -->
+## TOC
+
+- [Requirements](#requirements)
+    - [Required](#required)
+    - [Optional](#optional)
+- [Commands](#commands)
+    - [Run for Development](#run-for-development)
+    - [Build](#build)
+    - [Run](#run)
+- [Example Usage](#example-usage)
+    - [Setup](#setup)
+    - [Build and Run](#build-and-run)
+    - [Request to the APIs](#request-to-the-apis)
+- [References](#references)
+    - [Installation](#installation)
+    - [Getting Started](#getting-started)
 
 ## Requirements
 
