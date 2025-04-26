@@ -106,4 +106,22 @@ public class FizzBuzzControllerTests {
                     .andExpect(jsonPath("$.result").value("1"));
         }
     }
+
+    @Nested
+    @DisplayName("数値を渡されなかったらエラーレスポンスを返す")
+    class ReturnsErrorResponseForMissingNumberString {
+        @Test
+        @DisplayName("パラメータ無しでリクエストされた場合は所定のエラーレスポンスを返す")
+        void returnsErrorResponseForMissingParameter() throws Exception {
+            // Act
+            ResultActions resultActions = mockMvc
+                    .perform(get("/fizzbuzz"));
+
+            // Assert
+            resultActions
+                    .andExpect(status().isBadRequest())
+                    .andExpect(jsonPath("$.error").value("Missing required parameter"))
+                    .andExpect(jsonPath("$.message").value("The 'num' query parameter is required."));
+        }
+    }
 }
