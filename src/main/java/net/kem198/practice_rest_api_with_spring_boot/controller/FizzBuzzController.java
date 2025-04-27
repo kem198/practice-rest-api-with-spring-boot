@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
+import net.kem198.practice_rest_api_with_spring_boot.constants.ErrorCodes;
+import net.kem198.practice_rest_api_with_spring_boot.dto.ErrorResponseDto;
 import net.kem198.practice_rest_api_with_spring_boot.service.FizzBuzzService;
 
 @RestController
@@ -22,26 +24,29 @@ public class FizzBuzzController {
     private FizzBuzzService fizzBuzzService;
 
     @GetMapping
-    public ResponseEntity<Map<String, String>> getFizzBuzz(
-            @RequestParam(value = "num") int number) {
+    public ResponseEntity<Map<String, String>> getFizzBuzz(@RequestParam(value = "num") int number) {
         String result = fizzBuzzService.processFizzBuzz(number);
+
         return ResponseEntity.ok(Map.of("result", result));
     }
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
-    public ResponseEntity<Map<String, String>> handleMethodArgumentTypeMismatchException(
+    public ResponseEntity<ErrorResponseDto> handleMethodArgumentTypeMismatchException(
             MethodArgumentTypeMismatchException ex) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(Map.of(
-                        "error", "Invalid number format",
-                        "message", "The 'num' query parameter must be a valid integer."));
+        ErrorResponseDto errorResponseDto = new ErrorResponseDto(
+                ErrorCodes.INVALID_NUMBER_FORMAT,
+                "The 'num' query parameter must be a valid integer.");
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponseDto);
     }
 
     @ExceptionHandler(MissingServletRequestParameterException.class)
-    public ResponseEntity<Map<String, String>> handleMissingParams(MissingServletRequestParameterException ex) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(Map.of(
-                        "error", "Missing required parameter",
-                        "message", String.format("The '%s' query parameter is required.", ex.getParameterName())));
+    public ResponseEntity<ErrorResponseDto> handleMissingParams(MissingServletRequestParameterException ex) {
+        ErrorResponseDto errorResponseDto = new ErrorResponseDto(
+                ErrorCodes.MISSING_PARAMETER,
+                String.format("The '%s' query parameter is required.", ex.getParameterName()));
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponseDto);
+
     }
 }
