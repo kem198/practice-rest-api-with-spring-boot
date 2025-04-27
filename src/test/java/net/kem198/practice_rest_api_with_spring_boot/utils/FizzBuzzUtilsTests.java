@@ -6,11 +6,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-@DisplayName("Fizz Buzz 数列と変換規則を扱う FizzBuzzUtils クラス")
 public class FizzBuzzUtilsTests {
     @Nested
-    @DisplayName("Convert メソッドは数を文字列に変換する")
-    class ConvertMethod {
+    class ConvertMethodTests {
         @Nested
         @DisplayName("3 の倍数の場合は「Fizz」に変換する")
         class ConvertsMultiplesOf3ToFizz {
