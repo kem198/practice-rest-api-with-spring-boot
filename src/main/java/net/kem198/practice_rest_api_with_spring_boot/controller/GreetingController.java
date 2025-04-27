@@ -11,13 +11,13 @@ import net.kem198.practice_rest_api_with_spring_boot.model.Greeting;
 @RestController
 public class GreetingController {
 
-	private static final String template = "Hello, %s!";
-	private final AtomicLong counter = new AtomicLong();
+    private static final String template = "Hello, %s!";
+    private final AtomicLong counter = new AtomicLong();
 
-	@GetMapping("/greeting")
-	public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
-		System.out.println("aaa");
-		System.out.println("bbb");
-		return new Greeting(counter.incrementAndGet(), String.format(template, name));
-	}
+    @GetMapping("/greeting")
+    public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
+        System.out.println("aaa");
+        System.out.println("bbb");
+        return new Greeting(counter.incrementAndGet(), String.format(template, name));
+    }
 }
