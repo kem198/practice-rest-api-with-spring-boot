@@ -5,14 +5,17 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
+@SpringBootTest
 public class FizzBuzzServiceTests {
+    @Autowired
+    private FizzBuzzService fizzBuzzService;
+
     @Test
     @DisplayName("数値文字列であれば FizzBuzzUtils.convert() を一回呼び結果を返す")
     void returnsResultForNumericString() {
-        // Arrange
-        FizzBuzzService fizzBuzzService = new FizzBuzzService();
-
         // Act
         String actual = fizzBuzzService.processFizzBuzz("3");
 
@@ -23,9 +26,6 @@ public class FizzBuzzServiceTests {
     @Test
     @DisplayName("数値文字列でなければ例外 IllegalArgumentException をスローする")
     void throwIllegalArgumentExceptionNonNumericString() {
-        // Arrange
-        FizzBuzzService fizzBuzzService = new FizzBuzzService();
-
         // Act
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             fizzBuzzService.processFizzBuzz("abc");
