@@ -22,7 +22,7 @@ public class FizzBuzzController {
 
     @GetMapping
     public ResponseEntity<Map<String, String>> getFizzBuzz(
-            @RequestParam(value = "num", required = true) String numberString) {
+            @RequestParam(value = "num") String numberString) {
         try {
             String result = fizzBuzzService.processFizzBuzz(numberString);
             return ResponseEntity.ok(Map.of("result", result));
