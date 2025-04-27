@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import net.kem198.practice_rest_api_with_spring_boot.service.FizzBuzzService;
 
@@ -22,16 +23,18 @@ public class FizzBuzzController {
 
     @GetMapping
     public ResponseEntity<Map<String, String>> getFizzBuzz(
-            @RequestParam(value = "num") String numberString) {
-        try {
-            String result = fizzBuzzService.processFizzBuzz(numberString);
-            return ResponseEntity.ok(Map.of("result", result));
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(Map.of(
-                            "error", "Invalid number format",
-                            "message", "The 'num' query parameter must be a valid integer."));
-        }
+            @RequestParam(value = "num") int number) {
+        String result = fizzBuzzService.processFizzBuzz(number);
+        return ResponseEntity.ok(Map.of("result", result));
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<Map<String, String>> MethodArgumentTypeMismatchException(
+            MethodArgumentTypeMismatchException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(Map.of(
+                        "error", "Invalid number format",
+                        "message", "The 'num' query parameter must be a valid integer."));
     }
 
     @ExceptionHandler(MissingServletRequestParameterException.class)
