@@ -8,9 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.boot.test.web.client.TestRestTemplate;
 
-import net.kem198.practice_rest_api_with_spring_boot.model.Greeting;
+import net.kem198.practice_rest_api_with_spring_boot.dto.GreetingDto;
+
+import org.springframework.boot.test.web.client.TestRestTemplate;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class GreetingControllerTests {
@@ -23,7 +24,7 @@ public class GreetingControllerTests {
         @DisplayName("デフォルトの名前で挨拶を返す")
         void returnsGreetingWithDefaultName() {
             // Act
-            ResponseEntity<Greeting> response = restTemplate.getForEntity("/api/v1/greeting", Greeting.class);
+            ResponseEntity<GreetingDto> response = restTemplate.getForEntity("/api/v1/greeting", GreetingDto.class);
 
             // Assert
             assertEquals(HttpStatus.OK, response.getStatusCode());
@@ -34,8 +35,8 @@ public class GreetingControllerTests {
         @DisplayName("指定された名前で挨拶を返す")
         void returnsGreetingWithSpecifiedName() {
             // Act
-            ResponseEntity<Greeting> response = restTemplate.getForEntity("/api/v1/greeting?name=KeM198",
-                    Greeting.class);
+            ResponseEntity<GreetingDto> response = restTemplate.getForEntity("/api/v1/greeting?name=KeM198",
+                    GreetingDto.class);
 
             // Assert
             assertEquals(HttpStatus.OK, response.getStatusCode());
