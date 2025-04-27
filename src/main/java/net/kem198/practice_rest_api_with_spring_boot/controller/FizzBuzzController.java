@@ -28,7 +28,7 @@ public class FizzBuzzController {
         return ResponseEntity.ok(Map.of("result", result));
     }
 
-    @ExceptionHandler(IllegalArgumentException.class)
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ResponseEntity<Map<String, String>> handleMethodArgumentTypeMismatchException(
             MethodArgumentTypeMismatchException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
