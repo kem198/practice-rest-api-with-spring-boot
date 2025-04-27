@@ -37,7 +37,7 @@ public class FizzBuzzControllerTests {
         @DisplayName("\"?num=3\" でリクエストされた場合は {\"result\": \"Fizz\"} を返す")
         void returnsFizzFor3() throws Exception {
             // Act
-            ResponseEntity<String> response = restTemplate.getForEntity("/fizzbuzz?num=3", String.class);
+            ResponseEntity<String> response = restTemplate.getForEntity("/api/v1/fizzbuzz?num=3", String.class);
 
             // Assert
             assertEquals(HttpStatus.OK, response.getStatusCode());
@@ -53,7 +53,7 @@ public class FizzBuzzControllerTests {
         @DisplayName("\"?num=5\" でリクエストされた場合は {\"result\": \"Buzz\"} を返す")
         void returnsBuzzFor5() throws Exception {
             // Act
-            ResponseEntity<String> response = restTemplate.getForEntity("/fizzbuzz?num=5", String.class);
+            ResponseEntity<String> response = restTemplate.getForEntity("/api/v1/fizzbuzz?num=5", String.class);
 
             // Assert
             assertEquals(HttpStatus.OK, response.getStatusCode());
@@ -69,7 +69,7 @@ public class FizzBuzzControllerTests {
         @DisplayName("\"?num=15\" でリクエストされた場合は {\"result\": \"FizzBuzz\"} を返す")
         void returnsFizzBuzzFor15() throws Exception {
             // Act
-            ResponseEntity<String> response = restTemplate.getForEntity("/fizzbuzz?num=15", String.class);
+            ResponseEntity<String> response = restTemplate.getForEntity("/api/v1/fizzbuzz?num=15", String.class);
 
             // Assert
             assertEquals(HttpStatus.OK, response.getStatusCode());
@@ -85,7 +85,7 @@ public class FizzBuzzControllerTests {
         @DisplayName("\"?num=1\" でリクエストされた場合は {\"result\": \"1\"} を返す")
         void returns1For1() throws Exception {
             // Act
-            ResponseEntity<String> response = restTemplate.getForEntity("/fizzbuzz?num=1", String.class);
+            ResponseEntity<String> response = restTemplate.getForEntity("/api/v1/fizzbuzz?num=1", String.class);
 
             // Assert
             assertEquals(HttpStatus.OK, response.getStatusCode());
@@ -101,7 +101,7 @@ public class FizzBuzzControllerTests {
         @DisplayName("パラメータ無しでリクエストされた場合は所定のエラーレスポンスを返す")
         void returnsErrorResponseForMissingParameter() throws Exception {
             // Act
-            ResponseEntity<String> response = restTemplate.getForEntity("/fizzbuzz", String.class);
+            ResponseEntity<String> response = restTemplate.getForEntity("/api/v1/fizzbuzz", String.class);
 
             // Assert
             assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
@@ -114,7 +114,7 @@ public class FizzBuzzControllerTests {
         @DisplayName("数値として扱えない値でリクエストされた場合は所定のエラーレスポンスを返す")
         void returnsErrorResponseForInvalidNumber() throws Exception {
             // Act
-            ResponseEntity<String> response = restTemplate.getForEntity("/fizzbuzz?num=abc", String.class);
+            ResponseEntity<String> response = restTemplate.getForEntity("/api/v1/fizzbuzz?num=abc", String.class);
 
             // Assert
             assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());

@@ -105,20 +105,20 @@ $ java -jar build/libs/practice-rest-api-with-spring-boot-0.0.1-SNAPSHOT.jar
 
 ### Request to the APIs
 
-Request `/greeting` :
+Request `/api/v1/greeting` :
 
 ```sh
-$ curl 'http://localhost:8080/greeting'
+$ curl 'http://localhost:8080/api/v1/greeting'
 {"id":1,"content":"Hello, World!"}%
 
-$ curl 'http://localhost:8080/greeting?name=kem198'
+$ curl 'http://localhost:8080/api/v1/greeting?name=kem198'
 {"id":2,"content":"Hello, kem198!"}%
 ```
 
-Request `/fizzbuzz` :
+Request `/api/v1/fizzbuzz` :
 
 ```sh
-$ curl -i "http://localhost:8080/fizzbuzz?num=3"
+$ curl -i "http://localhost:8080/api/v1/fizzbuzz?num=3"
 HTTP/1.1 200
 Content-Type: application/json
 Transfer-Encoding: chunked
@@ -126,7 +126,7 @@ Date: Sat, 26 Apr 2025 01:36:35 GMT
 
 {"result":"Fizz"}%
 
-$ curl -i "http://localhost:8080/fizzbuzz"
+$ curl -i "http://localhost:8080/api/v1/fizzbuzz"
 HTTP/1.1 400
 Content-Type: application/json
 Transfer-Encoding: chunked
@@ -135,7 +135,7 @@ Connection: close
 
 {"error":"Missing required parameter","message":"The 'num' query parameter is required."}%
 
-$ curl -i "http://localhost:8080/fizzbuzz?num=abc"
+$ curl -i "http://localhost:8080/api/v1/fizzbuzz?num=abc"
 HTTP/1.1 400
 Content-Type: application/json
 Transfer-Encoding: chunked

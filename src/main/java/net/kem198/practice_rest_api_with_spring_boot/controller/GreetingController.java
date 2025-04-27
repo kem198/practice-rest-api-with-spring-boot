@@ -14,7 +14,7 @@ public class GreetingController {
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
 
-    @GetMapping("/greeting")
+    @GetMapping("/api/v1/greeting")
     public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
         System.out.println("aaa");
         System.out.println("bbb");

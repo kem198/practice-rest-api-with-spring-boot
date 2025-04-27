@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import net.kem198.practice_rest_api_with_spring_boot.service.FizzBuzzService;
 
 @RestController
-@RequestMapping("/fizzbuzz")
+@RequestMapping("/api/v1/fizzbuzz")
 public class FizzBuzzController {
     @Autowired
     private FizzBuzzService fizzBuzzService;
