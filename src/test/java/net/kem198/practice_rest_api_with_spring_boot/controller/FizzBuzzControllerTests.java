@@ -2,31 +2,33 @@ package net.kem198.practice_rest_api_with_spring_boot.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.springframework.boot.test.web.client.TestRestTemplate;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@AutoConfigureMockMvc
 @DisplayName("FizzBuzz の変換リクエストを待ち受ける FizzBuzzController クラス")
 public class FizzBuzzControllerTests {
-    @Test
-    @DisplayName("JUnit の動作確認用 成功")
-    void checkTestSuccess() {
-        assertEquals(1, 1);
-    }
+
+    private ObjectMapper objectMapper;
 
     @Autowired
-    private MockMvc mockMvc;
+    private TestRestTemplate restTemplate;
+
+    @BeforeEach
+    void setUp() {
+        objectMapper = new ObjectMapper();
+    }
 
     @Nested
     @DisplayName("3 で割り切れる数値を渡した場合は文字列 \"Fizz\" を返す")
@@ -35,13 +37,12 @@ public class FizzBuzzControllerTests {
         @DisplayName("\"?num=3\" でリクエストされた場合は {\"result\": \"Fizz\"} を返す")
         void returnsFizzFor3() throws Exception {
             // Act
-            ResultActions resultActions = mockMvc
-                    .perform(get("/fizzbuzz").param("num", "3"));
+            ResponseEntity<String> response = restTemplate.getForEntity("/fizzbuzz?num=3", String.class);
 
             // Assert
-            resultActions
-                    .andExpect(status().isOk())
-                    .andExpect(jsonPath("$.result").value("Fizz"));
+            assertEquals(HttpStatus.OK, response.getStatusCode());
+            JsonNode responseBody = objectMapper.readTree(response.getBody());
+            assertEquals("Fizz", responseBody.get("result").asText());
         }
     }
 
@@ -52,13 +53,12 @@ public class FizzBuzzControllerTests {
         @DisplayName("\"?num=5\" でリクエストされた場合は {\"result\": \"Buzz\"} を返す")
         void returnsBuzzFor5() throws Exception {
             // Act
-            ResultActions resultActions = mockMvc
-                    .perform(get("/fizzbuzz").param("num", "5"));
+            ResponseEntity<String> response = restTemplate.getForEntity("/fizzbuzz?num=5", String.class);
 
             // Assert
-            resultActions
-                    .andExpect(status().isOk())
-                    .andExpect(jsonPath("$.result").value("Buzz"));
+            assertEquals(HttpStatus.OK, response.getStatusCode());
+            JsonNode responseBody = objectMapper.readTree(response.getBody());
+            assertEquals("Buzz", responseBody.get("result").asText());
         }
     }
 
@@ -69,13 +69,12 @@ public class FizzBuzzControllerTests {
         @DisplayName("\"?num=15\" でリクエストされた場合は {\"result\": \"FizzBuzz\"} を返す")
         void returnsFizzBuzzFor15() throws Exception {
             // Act
-            ResultActions resultActions = mockMvc
-                    .perform(get("/fizzbuzz").param("num", "15"));
+            ResponseEntity<String> response = restTemplate.getForEntity("/fizzbuzz?num=15", String.class);
 
             // Assert
-            resultActions
-                    .andExpect(status().isOk())
-                    .andExpect(jsonPath("$.result").value("FizzBuzz"));
+            assertEquals(HttpStatus.OK, response.getStatusCode());
+            JsonNode responseBody = objectMapper.readTree(response.getBody());
+            assertEquals("FizzBuzz", responseBody.get("result").asText());
         }
     }
 
@@ -86,45 +85,42 @@ public class FizzBuzzControllerTests {
         @DisplayName("\"?num=1\" でリクエストされた場合は {\"result\": \"1\"} を返す")
         void returns1For1() throws Exception {
             // Act
-            ResultActions resultActions = mockMvc
-                    .perform(get("/fizzbuzz").param("num", "1"));
+            ResponseEntity<String> response = restTemplate.getForEntity("/fizzbuzz?num=1", String.class);
 
             // Assert
-            resultActions
-                    .andExpect(status().isOk())
-                    .andExpect(jsonPath("$.result").value("1"));
+            assertEquals(HttpStatus.OK, response.getStatusCode());
+            JsonNode responseBody = objectMapper.readTree(response.getBody());
+            assertEquals("1", responseBody.get("result").asText());
         }
     }
 
     @Nested
-    @DisplayName("数値を渡されなかったらエラーレスポンスを返す")
+    @DisplayName("数値文字列を渡されなかったらエラーレスポンスを返す")
     class ReturnsErrorResponseForMissingNumberString {
         @Test
         @DisplayName("パラメータ無しでリクエストされた場合は所定のエラーレスポンスを返す")
         void returnsErrorResponseForMissingParameter() throws Exception {
             // Act
-            ResultActions resultActions = mockMvc
-                    .perform(get("/fizzbuzz"));
+            ResponseEntity<String> response = restTemplate.getForEntity("/fizzbuzz", String.class);
 
             // Assert
-            resultActions
-                    .andExpect(status().isBadRequest())
-                    .andExpect(jsonPath("$.error").value("Missing required parameter"))
-                    .andExpect(jsonPath("$.message").value("The 'num' query parameter is required."));
+            assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+            JsonNode responseBody = objectMapper.readTree(response.getBody());
+            assertEquals("Missing required parameter", responseBody.get("error").asText());
+            assertEquals("The 'num' query parameter is required.", responseBody.get("message").asText());
         }
 
         @Test
         @DisplayName("数値として扱えない値でリクエストされた場合は所定のエラーレスポンスを返す")
         void returnsErrorResponseForInvalidNumber() throws Exception {
             // Act
-            ResultActions resultActions = mockMvc
-                    .perform(get("/fizzbuzz").param("num", "abc"));
+            ResponseEntity<String> response = restTemplate.getForEntity("/fizzbuzz?num=abc", String.class);
 
             // Assert
-            resultActions
-                    .andExpect(status().isBadRequest())
-                    .andExpect(jsonPath("$.error").value("Invalid number format"))
-                    .andExpect(jsonPath("$.message").value("The 'num' query parameter must be a valid integer."));
+            assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+            JsonNode responseBody = objectMapper.readTree(response.getBody());
+            assertEquals("Invalid number format", responseBody.get("error").asText());
+            assertEquals("The 'num' query parameter must be a valid integer.", responseBody.get("message").asText());
         }
     }
 }

@@ -19,7 +19,7 @@ public class FizzBuzzController {
     private FizzBuzzService fizzBuzzService;
 
     @GetMapping("/fizzbuzz")
-    public ResponseEntity<Map<String, String>> execute(
+    public ResponseEntity<Map<String, String>> getFizzBuzz(
             @RequestParam(value = "num", required = true) String numberString) {
         try {
             String result = fizzBuzzService.processFizzBuzz(numberString);
