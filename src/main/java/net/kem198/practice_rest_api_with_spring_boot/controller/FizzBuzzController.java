@@ -29,7 +29,7 @@ public class FizzBuzzController {
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<Map<String, String>> MethodArgumentTypeMismatchException(
+    public ResponseEntity<Map<String, String>> handleMethodArgumentTypeMismatchException(
             MethodArgumentTypeMismatchException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(Map.of(
