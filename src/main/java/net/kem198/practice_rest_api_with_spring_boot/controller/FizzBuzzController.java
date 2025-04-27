@@ -2,6 +2,7 @@ package net.kem198.practice_rest_api_with_spring_boot.controller;
 
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -14,11 +15,12 @@ import net.kem198.practice_rest_api_with_spring_boot.service.FizzBuzzService;
 
 @RestController
 public class FizzBuzzController {
+    @Autowired
+    private FizzBuzzService fizzBuzzService;
 
     @GetMapping("/fizzbuzz")
     public ResponseEntity<Map<String, String>> execute(
             @RequestParam(value = "num", required = true) String numberString) {
-        FizzBuzzService fizzBuzzService = new FizzBuzzService();
         try {
             String result = fizzBuzzService.processFizzBuzz(numberString);
             return ResponseEntity.ok(Map.of("result", result));
