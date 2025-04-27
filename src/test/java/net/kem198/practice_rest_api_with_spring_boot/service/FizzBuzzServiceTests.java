@@ -21,7 +21,7 @@ public class FizzBuzzServiceTests {
     }
 
     @Test
-    @DisplayName("数値文字列でなければ例外 IllegalArgumentException をスローすること")
+    @DisplayName("数値文字列でなければ例外 IllegalArgumentException をスローする")
     void throwIllegalArgumentExceptionNonNumericString() {
         // Arrange
         FizzBuzzService fizzBuzzService = new FizzBuzzService();
