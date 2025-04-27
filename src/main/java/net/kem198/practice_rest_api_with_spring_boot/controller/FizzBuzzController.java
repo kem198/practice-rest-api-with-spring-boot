@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import net.kem198.practice_rest_api_with_spring_boot.utils.FizzBuzzUtils;
+import net.kem198.practice_rest_api_with_spring_boot.service.FizzBuzzService;
 
 @RestController
 public class FizzBuzzController {
@@ -18,11 +18,11 @@ public class FizzBuzzController {
     @GetMapping("/fizzbuzz")
     public ResponseEntity<Map<String, String>> execute(
             @RequestParam(value = "num", required = true) String numberString) {
+        FizzBuzzService fizzBuzzService = new FizzBuzzService();
         try {
-            int number = Integer.parseInt(numberString);
-            String result = FizzBuzzUtils.convert(number);
+            String result = fizzBuzzService.processFizzBuzz(numberString);
             return ResponseEntity.ok(Map.of("result", result));
-        } catch (NumberFormatException e) {
+        } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(Map.of(
                             "error", "Invalid number format",
