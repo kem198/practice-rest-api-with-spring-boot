@@ -17,17 +17,25 @@ public class FizzBuzzUtilsTests {
             @Test
             @DisplayName("3 を渡すと文字列 Fizz を返す")
             void returnsFizzFor3() {
-                assertEquals("Fizz", FizzBuzzUtils.convert(3));
+                // Act
+                String actual = FizzBuzzUtils.convert(3);
+
+                // Assert
+                assertEquals("Fizz", actual);
             }
         }
 
         @Nested
-        @DisplayName("5 の倍数の場合は「Fizz」に変換する")
+        @DisplayName("5 の倍数の場合は「Buzz」に変換する")
         class ConvertsMultiplesOf5ToBuzz {
             @Test
             @DisplayName("5 を渡すと文字列 Buzz を返す")
             void returnsBuzzFor5() {
-                assertEquals("Buzz", FizzBuzzUtils.convert(5));
+                // Act
+                String actual = FizzBuzzUtils.convert(5);
+
+                // Assert
+                assertEquals("Buzz", actual);
             }
         }
 
@@ -37,7 +45,11 @@ public class FizzBuzzUtilsTests {
             @Test
             @DisplayName("15 を渡すと文字列 FizzBuzz を返す")
             void returnsFizzBuzzFor15() {
-                assertEquals("FizzBuzz", FizzBuzzUtils.convert(15));
+                // Act
+                String actual = FizzBuzzUtils.convert(15);
+
+                // Assert
+                assertEquals("FizzBuzz", actual);
             }
         }
 
@@ -47,7 +59,11 @@ public class FizzBuzzUtilsTests {
             @Test
             @DisplayName("1 を渡すと文字列 1 を返す")
             void returns1For1() {
-                assertEquals("1", FizzBuzzUtils.convert(1));
+                // Act
+                String actual = FizzBuzzUtils.convert(1);
+
+                // Assert
+                assertEquals("1", actual);
             }
         }
     }
