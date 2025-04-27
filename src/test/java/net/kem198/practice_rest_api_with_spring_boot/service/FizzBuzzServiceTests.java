@@ -7,11 +7,6 @@ import org.junit.jupiter.api.Test;
 
 public class FizzBuzzServiceTests {
     @Test
-    public void a() {
-        assertEquals("1", "1");
-    }
-
-    @Test
     @DisplayName("数値へ変換可能な文字列であれば FizzBuzzUtils.convert() を一回呼び結果を返す")
     void returnsResultForNumericString() {
         // Arrange
