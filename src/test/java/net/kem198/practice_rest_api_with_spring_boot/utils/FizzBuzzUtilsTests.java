@@ -6,8 +6,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import net.kem198.practice_rest_api_with_spring_boot.utils.FizzBuzzUtils;
-
 @DisplayName("Fizz Buzz 数列と変換規則を扱う FizzBuzzUtils クラス")
 public class FizzBuzzUtilsTests {
     @Nested
