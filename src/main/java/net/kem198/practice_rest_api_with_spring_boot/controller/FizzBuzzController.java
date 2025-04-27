@@ -8,17 +8,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import net.kem198.practice_rest_api_with_spring_boot.service.FizzBuzzService;
 
 @RestController
+@RequestMapping("/fizzbuzz")
 public class FizzBuzzController {
     @Autowired
     private FizzBuzzService fizzBuzzService;
 
-    @GetMapping("/fizzbuzz")
+    @GetMapping
     public ResponseEntity<Map<String, String>> getFizzBuzz(
             @RequestParam(value = "num", required = true) String numberString) {
         try {
