@@ -26,6 +26,7 @@ This project is designed to practice the following:
 - [References](#references)
     - [Installation](#installation)
     - [Getting Started](#getting-started)
+    - [API](#api)
 
 ## Requirements
 
@@ -166,3 +167,8 @@ Connection: close
 ### Getting Started
 
 - [Spring Boot REST API の作成 - 公式サンプルコード](https://spring.pleiades.io/guides/gs/rest-service)
+
+### API
+
+- [エラーレスポンス :: Spring Framework - リファレンス](https://spring.pleiades.io/spring-framework/reference/web/webmvc/mvc-ann-rest-exceptions.html)
+- [RFC 9457 - Problem Details for HTTP APIs 日本語訳](https://tex2e.github.io/rfc-translater/html/rfc9457.html)
