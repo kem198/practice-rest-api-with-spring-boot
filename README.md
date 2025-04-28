@@ -20,9 +20,9 @@ This project is designed to practice the following:
     - [Run](#run)
 - [Examples](#examples)
     - [Setup](#setup)
+    - [Edit](#edit)
     - [Build and Run](#build-and-run)
     - [Request to the APIs](#request-to-the-apis)
-    - [Edit](#edit)
 - [References](#references)
     - [Installation](#installation)
     - [Getting Started](#getting-started)
@@ -90,11 +90,20 @@ $ cd /path/to/your/repo/
 $ git clone https://github.com/kem198/practice-rest-api-with-spring-boot.git
 ```
 
-### Build and Run
+### Edit
 
 ```shell
 # Move to repository root
 $ cd practice-rest-api-with-spring-boot
+
+# Open in VS Code
+$ code .
+```
+
+### Build and Run
+
+```shell
+# Here is repository root
 $ pwd
 /path/to/your/repo/practice-rest-api-with-spring-boot
 
@@ -124,7 +133,7 @@ $ curl -i "http://localhost:8080/api/v1/fizzbuzz?num=3"
 HTTP/1.1 200
 Content-Type: application/json
 Transfer-Encoding: chunked
-Date: Sat, 26 Apr 2025 01:36:35 GMT
+Date: Mon, 28 Apr 2025 04:39:13 GMT
 
 {"result":"Fizz"}%
 
@@ -132,30 +141,19 @@ $ curl -i "http://localhost:8080/api/v1/fizzbuzz"
 HTTP/1.1 400
 Content-Type: application/json
 Transfer-Encoding: chunked
-Date: Sat, 26 Apr 2025 01:35:36 GMT
+Date: Mon, 28 Apr 2025 04:39:24 GMT
 Connection: close
 
-{"error":"Missing required parameter","message":"The 'num' query parameter is required."}%
+{"code":"1001","message":"The 'num' query parameter is required."}%
 
 $ curl -i "http://localhost:8080/api/v1/fizzbuzz?num=abc"
 HTTP/1.1 400
 Content-Type: application/json
 Transfer-Encoding: chunked
-Date: Sat, 26 Apr 2025 01:35:48 GMT
+Date: Mon, 28 Apr 2025 04:39:48 GMT
 Connection: close
 
-{"error":"Invalid number format","message":"The 'num' query parameter must be a valid integer."}%
-```
-
-### Edit
-
-```shell
-# Here is repository root
-$ pwd
-/path/to/your/repo/practice-rest-api-with-spring-boot
-
-# Open in VS Code
-$ code .
+{"code":"1000","message":"The 'num' query parameter must be a valid integer."}%
 ```
 
 ## References
