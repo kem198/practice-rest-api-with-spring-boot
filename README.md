@@ -22,7 +22,9 @@ This project is designed to practice the following:
     - [Setup](#setup)
     - [Edit](#edit)
     - [Build and Run](#build-and-run)
-    - [Request to the APIs](#request-to-the-apis)
+- [Demo APIs](#demo-apis)
+    - [`/api/v1/greeting`](#apiv1greeting)
+    - [`/api/v1/fizzbuzz`](#apiv1fizzbuzz)
 - [References](#references)
     - [Installation](#installation)
     - [Getting Started](#getting-started)
@@ -116,9 +118,9 @@ $ ./gradlew build
 $ java -jar build/libs/practice-rest-api-with-spring-boot-0.0.1-SNAPSHOT.jar
 ```
 
-### Request to the APIs
+## Demo APIs
 
-Request `/api/v1/greeting` :
+### `/api/v1/greeting`
 
 ```sh
 $ curl -i 'http://localhost:8080/api/v1/greeting'
@@ -138,7 +140,7 @@ Date: Mon, 28 Apr 2025 05:33:03 GMT
 {"id":2,"content":"Hello, kem198!"}%
 ```
 
-Request `/api/v1/fizzbuzz` :
+### `/api/v1/fizzbuzz`
 
 ```sh
 $ curl -s -D /dev/stderr 'http://localhost:8080/api/v1/fizzbuzz?num=3' | jq
