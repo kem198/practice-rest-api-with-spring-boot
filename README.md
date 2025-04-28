@@ -123,6 +123,10 @@ $ ./gradlew build
 
 # Run the application
 $ java -jar build/libs/practice-rest-api-with-spring-boot-0.0.1-SNAPSHOT.jar
+
+# Request to API
+$ curl 'http://localhost:8080/api/v1/greeting'
+{"id":1,"content":"Hello, World!"}%
 ```
 
 ## Demo APIs
