@@ -15,6 +15,7 @@ This project is designed to practice the following:
     - [Required](#required)
     - [Recommended](#recommended)
 - [Commands](#commands)
+    - [Test](#test)
     - [Run for Development](#run-for-development)
     - [Build](#build)
     - [Run](#run)
@@ -43,6 +44,12 @@ This project is designed to practice the following:
 - [Visual Studio Code](https://azure.microsoft.com/ja-jp/products/visual-studio-code)
 
 ## Commands
+
+### Test
+
+```shell
+./gradlew test
+```
 
 ### Run for Development
 
@@ -123,7 +130,7 @@ $ java -jar build/libs/practice-rest-api-with-spring-boot-0.0.1-SNAPSHOT.jar
 ### `/api/v1/greeting`
 
 ```sh
-$ curl -i 'http://localhost:8080/api/v1/greeting'
+$ curl -i  -X GET 'http://localhost:8080/api/v1/greeting'
 HTTP/1.1 200
 Content-Type: application/json
 Transfer-Encoding: chunked
@@ -131,7 +138,7 @@ Date: Mon, 28 Apr 2025 05:32:49 GMT
 
 {"id":1,"content":"Hello, World!"}%
 
-$ curl -i 'http://localhost:8080/api/v1/greeting?name=kem198'
+$ curl -i  -X GET 'http://localhost:8080/api/v1/greeting?name=kem198'
 HTTP/1.1 200
 Content-Type: application/json
 Transfer-Encoding: chunked
@@ -143,7 +150,7 @@ Date: Mon, 28 Apr 2025 05:33:03 GMT
 ### `/api/v1/fizzbuzz`
 
 ```sh
-$ curl -s -D /dev/stderr 'http://localhost:8080/api/v1/fizzbuzz?num=3' | jq
+$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/api/v1/fizzbuzz?num=3' | jq
 HTTP/1.1 200
 Content-Type: application/json
 Transfer-Encoding: chunked
@@ -153,7 +160,7 @@ Date: Mon, 28 Apr 2025 05:43:50 GMT
   "result": "Fizz"
 }
 
-$ curl -s -D /dev/stderr 'http://localhost:8080/api/v1/fizzbuzz' | jq
+$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/api/v1/fizzbuzz' | jq
 HTTP/1.1 400
 Content-Type: application/problem+json
 Transfer-Encoding: chunked
@@ -168,7 +175,7 @@ Connection: close
   "instance": "/api/v1/fizzbuzz"
 }
 
-$ curl -s -D /dev/stderr 'http://localhost:8080/api/v1/fizzbuzz?num=abc' | jq
+$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/api/v1/fizzbuzz?num=abc' | jq
 HTTP/1.1 400
 Content-Type: application/problem+json
 Transfer-Encoding: chunked
