@@ -122,7 +122,7 @@ $ curl 'http://localhost:8080/api/v1/greeting'
 #### `/api/v1/greeting`
 
 ```sh
-$ curl -i  -X GET 'http://localhost:8080/api/v1/greeting'
+$ curl -i -X GET 'http://localhost:8080/api/v1/greeting'
 HTTP/1.1 200
 Content-Type: application/json
 Transfer-Encoding: chunked
@@ -130,7 +130,7 @@ Date: Mon, 28 Apr 2025 05:32:49 GMT
 
 {"id":1,"content":"Hello, World!"}%
 
-$ curl -i  -X GET 'http://localhost:8080/api/v1/greeting?name=kem198'
+$ curl -i -X GET 'http://localhost:8080/api/v1/greeting?name=kem198'
 HTTP/1.1 200
 Content-Type: application/json
 Transfer-Encoding: chunked
