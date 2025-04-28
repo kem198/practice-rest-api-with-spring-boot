@@ -22,6 +22,7 @@ This project is designed to practice the following:
     - [Setup](#setup)
     - [Build and Run](#build-and-run)
     - [Request to the APIs](#request-to-the-apis)
+    - [Edit](#edit)
 - [References](#references)
     - [Installation](#installation)
     - [Getting Started](#getting-started)
@@ -144,6 +145,17 @@ Date: Sat, 26 Apr 2025 01:35:48 GMT
 Connection: close
 
 {"error":"Invalid number format","message":"The 'num' query parameter must be a valid integer."}%
+```
+
+### Edit
+
+```shell
+# Here is repository root
+$ pwd
+/path/to/your/repo/practice-rest-api-with-spring-boot
+
+# Open in VS Code
+$ code .
 ```
 
 ## References
