@@ -13,12 +13,12 @@ This project is designed to practice the following:
 
 - [Requirements](#requirements)
     - [Required](#required)
-    - [Optional](#optional)
+    - [Recommended](#recommended)
 - [Commands](#commands)
     - [Run for Development](#run-for-development)
     - [Build](#build)
     - [Run](#run)
-- [Example Usage](#example-usage)
+- [Examples](#examples)
     - [Setup](#setup)
     - [Build and Run](#build-and-run)
     - [Request to the APIs](#request-to-the-apis)
@@ -32,9 +32,10 @@ This project is designed to practice the following:
 
 - [JDK 21](https://openjdk.org/projects/jdk/21/)
 
-### Optional
+### Recommended
 
-- [SDKMAN! the Software Development Kit Manager](https://sdkman.io/)
+- [SDKMAN!](https://sdkman.io/)
+- [Visual Studio Code](https://azure.microsoft.com/ja-jp/products/visual-studio-code)
 
 ## Commands
 
@@ -56,7 +57,7 @@ This project is designed to practice the following:
 java -jar build/libs/practice-rest-api-with-spring-boot-0.0.1-SNAPSHOT.jar
 ```
 
-## Example Usage
+## Examples
 
 ### Setup
 
