@@ -21,11 +21,10 @@ This project is designed to practice the following:
     - [Run](#run)
 - [Examples](#examples)
     - [Setup](#setup)
-    - [Edit](#edit)
     - [Build and Run](#build-and-run)
-- [Demo APIs](#demo-apis)
-    - [`/api/v1/greeting`](#apiv1greeting)
-    - [`/api/v1/fizzbuzz`](#apiv1fizzbuzz)
+    - [Demo APIs](#demo-apis)
+        - [`/api/v1/greeting`](#apiv1greeting)
+        - [`/api/v1/fizzbuzz`](#apiv1fizzbuzz)
 - [References](#references)
     - [Installation](#installation)
     - [Getting Started](#getting-started)
@@ -101,27 +100,16 @@ $ cd /path/to/your/repo/
 $ git clone https://github.com/kem198/practice-rest-api-with-spring-boot.git
 ```
 
-### Edit
+### Build and Run
 
 ```shell
 # Move to repository root
 $ cd practice-rest-api-with-spring-boot
-
-# Open in VS Code
-$ code .
-```
-
-### Build and Run
-
-```shell
-# Here is repository root
 $ pwd
 /path/to/your/repo/practice-rest-api-with-spring-boot
 
-# Build the application
+# Build and Run application
 $ ./gradlew build
-
-# Run the application
 $ java -jar build/libs/practice-rest-api-with-spring-boot-0.0.1-SNAPSHOT.jar
 
 # Request to API
@@ -129,9 +117,9 @@ $ curl 'http://localhost:8080/api/v1/greeting'
 {"id":1,"content":"Hello, World!"}%
 ```
 
-## Demo APIs
+### Demo APIs
 
-### `/api/v1/greeting`
+#### `/api/v1/greeting`
 
 ```sh
 $ curl -i  -X GET 'http://localhost:8080/api/v1/greeting'
@@ -151,7 +139,7 @@ Date: Mon, 28 Apr 2025 05:33:03 GMT
 {"id":2,"content":"Hello, kem198!"}%
 ```
 
-### `/api/v1/fizzbuzz`
+#### `/api/v1/fizzbuzz`
 
 ```sh
 $ curl -s -D /dev/stderr -X GET 'http://localhost:8080/api/v1/fizzbuzz?num=3' | jq
