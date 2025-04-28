@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import net.kem198.practice_rest_api_with_spring_boot.dto.GreetingDto;
+
 @SpringBootTest
 public class GreetingServiceTests {
     @Autowired
@@ -16,13 +18,13 @@ public class GreetingServiceTests {
     @Nested
     class ProcessGreetingMethodTests {
         @Test
-        @DisplayName("数値を与えると Greeting の結果を返す")
-        void returnsResultOfGreetingForNumber() {
+        @DisplayName("文字列を与えると GreetingDto 型の結果を返す")
+        void returnsGreetingDtoForString() {
             // Act
-            String actual = GreetingService.processGreeting(3);
+            GreetingDto greetingDto = GreetingService.processGreeting("World");
 
             // Assert
-            assertEquals("{\"id\":1,\"content\":\"Hello, World!\"}", actual);
+            assertEquals(new GreetingDto(1, "Hello, World!"), greetingDto);
         }
     }
 }
