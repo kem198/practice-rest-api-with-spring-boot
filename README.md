@@ -23,8 +23,8 @@ This project is designed to practice the following:
     - [Setup](#setup)
     - [Build and Run](#build-and-run)
     - [Demo APIs](#demo-apis)
-        - [`/api/v1/greeting`](#apiv1greeting)
-        - [`/api/v1/fizzbuzz`](#apiv1fizzbuzz)
+        - [`/api/greeting/v1`](#apigreetingv1)
+        - [`/api/fizzbuzz/v1`](#apifizzbuzzv1)
 - [References](#references)
     - [Installation](#installation)
     - [Getting Started](#getting-started)
@@ -119,10 +119,10 @@ $ curl 'http://localhost:8080/api/v1/greeting'
 
 ### Demo APIs
 
-#### `/api/v1/greeting`
+#### `/api/greeting/v1`
 
 ```sh
-$ curl -i -X GET 'http://localhost:8080/api/v1/greeting'
+$ curl -i -X GET 'http://localhost:8080/api/greeting/v1/hello'
 HTTP/1.1 200
 Content-Type: application/json
 Transfer-Encoding: chunked
@@ -130,7 +130,7 @@ Date: Mon, 28 Apr 2025 05:32:49 GMT
 
 {"id":1,"content":"Hello, World!"}%
 
-$ curl -i -X GET 'http://localhost:8080/api/v1/greeting?name=kem198'
+$ curl -i -X GET 'http://localhost:8080/api/greeting/v1/hello?name=kem198'
 HTTP/1.1 200
 Content-Type: application/json
 Transfer-Encoding: chunked
@@ -139,10 +139,10 @@ Date: Mon, 28 Apr 2025 05:33:03 GMT
 {"id":2,"content":"Hello, kem198!"}%
 ```
 
-#### `/api/v1/fizzbuzz`
+#### `/api/fizzbuzz/v1`
 
 ```sh
-$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/api/v1/fizzbuzz?num=3' | jq
+$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/api/fizzbuzz/v1/convert?num=3' | jq
 HTTP/1.1 200
 Content-Type: application/json
 Transfer-Encoding: chunked
@@ -152,7 +152,7 @@ Date: Mon, 28 Apr 2025 05:43:50 GMT
   "result": "Fizz"
 }
 
-$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/api/v1/fizzbuzz' | jq
+$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/api/fizzbuzz/v1/convert' | jq
 HTTP/1.1 400
 Content-Type: application/problem+json
 Transfer-Encoding: chunked
@@ -164,10 +164,10 @@ Connection: close
   "title": "Missing Parameter",
   "status": 400,
   "detail": "The 'num' query parameter is required.",
-  "instance": "/api/v1/fizzbuzz"
+  "instance": "/api/fizzbuzz/v1"
 }
 
-$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/api/v1/fizzbuzz?num=abc' | jq
+$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/api/fizzbuzz/v1/convert?num=abc' | jq
 HTTP/1.1 400
 Content-Type: application/problem+json
 Transfer-Encoding: chunked
@@ -179,7 +179,7 @@ Connection: close
   "title": "Invalid Number Format",
   "status": 400,
   "detail": "The 'num' query parameter must be a valid integer.",
-  "instance": "/api/v1/fizzbuzz"
+  "instance": "/api/fizzbuzz/v1"
 }
 ```
 
@@ -200,6 +200,7 @@ Connection: close
     - [RFC 9457 - Problem Details for HTTP APIs](https://datatracker.ietf.org/doc/html/rfc9457)
     - [RFC 9457 - Problem Details for HTTP APIs 日本語訳](https://tex2e.github.io/rfc-translater/html/rfc9457.html)
     - [REST API Common Spec としての HTTP Status Code と Error の提案 - Affamative Way](https://cos31.hatenablog.jp/entry/2023/12/14/093435)
+- [Google Tasks API  \|  Google for Developers](https://developers.google.com/workspace/tasks/reference/rest?hl=ja)
 
 ### curl
 
