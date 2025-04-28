@@ -27,6 +27,7 @@ This project is designed to practice the following:
     - [Installation](#installation)
     - [Getting Started](#getting-started)
     - [API](#api)
+    - [curl](#curl)
 
 ## Requirements
 
@@ -120,41 +121,65 @@ $ java -jar build/libs/practice-rest-api-with-spring-boot-0.0.1-SNAPSHOT.jar
 Request `/api/v1/greeting` :
 
 ```sh
-$ curl 'http://localhost:8080/api/v1/greeting'
+$ curl -i 'http://localhost:8080/api/v1/greeting'
+HTTP/1.1 200
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Mon, 28 Apr 2025 05:32:49 GMT
+
 {"id":1,"content":"Hello, World!"}%
 
-$ curl 'http://localhost:8080/api/v1/greeting?name=kem198'
+$ curl -i 'http://localhost:8080/api/v1/greeting?name=kem198'
+HTTP/1.1 200
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Mon, 28 Apr 2025 05:33:03 GMT
+
 {"id":2,"content":"Hello, kem198!"}%
 ```
 
 Request `/api/v1/fizzbuzz` :
 
 ```sh
-$ curl -i "http://localhost:8080/api/v1/fizzbuzz?num=3"
+$ curl -s -D /dev/stderr 'http://localhost:8080/api/v1/fizzbuzz?num=3' | jq
 HTTP/1.1 200
 Content-Type: application/json
 Transfer-Encoding: chunked
-Date: Mon, 28 Apr 2025 04:39:13 GMT
+Date: Mon, 28 Apr 2025 05:43:50 GMT
 
-{"result":"Fizz"}%
+{
+  "result": "Fizz"
+}
 
-$ curl -i "http://localhost:8080/api/v1/fizzbuzz"
+$ curl -s -D /dev/stderr 'http://localhost:8080/api/v1/fizzbuzz' | jq
 HTTP/1.1 400
-Content-Type: application/json
+Content-Type: application/problem+json
 Transfer-Encoding: chunked
-Date: Mon, 28 Apr 2025 04:39:24 GMT
+Date: Mon, 28 Apr 2025 05:44:28 GMT
 Connection: close
 
-{"code":"1001","message":"The 'num' query parameter is required."}%
+{
+  "type": "about:blank",
+  "title": "Missing Parameter",
+  "status": 400,
+  "detail": "The 'num' query parameter is required.",
+  "instance": "/api/v1/fizzbuzz"
+}
 
-$ curl -i "http://localhost:8080/api/v1/fizzbuzz?num=abc"
+$ curl -s -D /dev/stderr 'http://localhost:8080/api/v1/fizzbuzz?num=abc' | jq
 HTTP/1.1 400
-Content-Type: application/json
+Content-Type: application/problem+json
 Transfer-Encoding: chunked
-Date: Mon, 28 Apr 2025 04:39:48 GMT
+Date: Mon, 28 Apr 2025 05:44:49 GMT
 Connection: close
 
-{"code":"1000","message":"The 'num' query parameter must be a valid integer."}%
+{
+  "type": "about:blank",
+  "title": "Invalid Number Format",
+  "status": 400,
+  "detail": "The 'num' query parameter must be a valid integer.",
+  "instance": "/api/v1/fizzbuzz"
+}
 ```
 
 ## References
@@ -171,4 +196,10 @@ Connection: close
 ### API
 
 - [エラーレスポンス :: Spring Framework - リファレンス](https://spring.pleiades.io/spring-framework/reference/web/webmvc/mvc-ann-rest-exceptions.html)
-- [RFC 9457 - Problem Details for HTTP APIs 日本語訳](https://tex2e.github.io/rfc-translater/html/rfc9457.html)
+    - [RFC 9457 - Problem Details for HTTP APIs](https://datatracker.ietf.org/doc/html/rfc9457)
+    - [RFC 9457 - Problem Details for HTTP APIs 日本語訳](https://tex2e.github.io/rfc-translater/html/rfc9457.html)
+    - [REST API Common Spec としての HTTP Status Code と Error の提案 - Affamative Way](https://cos31.hatenablog.jp/entry/2023/12/14/093435)
+
+### curl
+
+- [curl -s -f -D /dev/stderr が優勝 – 株式会社ルーター](https://rooter.jp/web-crawling/curl-s-f-d-dev-stderr-is-the-winner/)
