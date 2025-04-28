@@ -19,13 +19,13 @@ import net.kem198.practice_rest_api_with_spring_boot.constants.ErrorTitles;
 import net.kem198.practice_rest_api_with_spring_boot.service.FizzBuzzService;
 
 @RestController
-@RequestMapping("/api/v1/fizzbuzz")
+@RequestMapping("/api/fizzbuzz/v1")
 public class FizzBuzzController {
     @Autowired
     private FizzBuzzService fizzBuzzService;
 
-    @GetMapping
-    public ResponseEntity<Map<String, String>> getFizzBuzz(@RequestParam(value = "num") int number) {
+    @GetMapping("/convert")
+    public ResponseEntity<Map<String, String>> convert(@RequestParam(value = "num") int number) {
         String result = fizzBuzzService.processFizzBuzz(number);
         return ResponseEntity.ok(Map.of("result", result));
     }
@@ -35,7 +35,7 @@ public class FizzBuzzController {
         ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
         problemDetail.setTitle(ErrorTitles.INVALID_NUMBER_FORMAT.getTitle());
         problemDetail.setDetail(String.format("The '%s' query parameter must be a valid integer.", ex.getName()));
-        problemDetail.setInstance(URI.create("/api/v1/fizzbuzz"));
+        problemDetail.setInstance(URI.create("/api/fizzbuzz/v1"));
         return problemDetail;
     }
 
@@ -44,7 +44,7 @@ public class FizzBuzzController {
         ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
         problemDetail.setTitle(ErrorTitles.MISSING_PARAMETER.getTitle());
         problemDetail.setDetail(String.format("The '%s' query parameter is required.", ex.getParameterName()));
-        problemDetail.setInstance(URI.create("/api/v1/fizzbuzz"));
+        problemDetail.setInstance(URI.create("/api/fizzbuzz/v1"));
         return problemDetail;
     }
 }
