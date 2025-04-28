@@ -14,7 +14,7 @@ import org.springframework.http.ResponseEntity;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import net.kem198.practice_rest_api_with_spring_boot.constants.ErrorCodes;
+import net.kem198.practice_rest_api_with_spring_boot.constants.ErrorTitles;
 
 import org.springframework.boot.test.web.client.TestRestTemplate;
 
@@ -61,8 +61,8 @@ public class FizzBuzzControllerTests {
                 // Assert
                 assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
                 JsonNode responseBody = objectMapper.readTree(response.getBody());
-                assertEquals(ErrorCodes.MISSING_PARAMETER.getCode(), responseBody.get("code").asText());
-                assertEquals("The 'num' query parameter is required.", responseBody.get("message").asText());
+                assertEquals(ErrorTitles.MISSING_PARAMETER.getTitle(), responseBody.get("title").asText());
+                assertEquals("The 'num' query parameter is required.", responseBody.get("detail").asText());
             }
 
             @Test
@@ -74,9 +74,9 @@ public class FizzBuzzControllerTests {
                 // Assert
                 assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
                 JsonNode responseBody = objectMapper.readTree(response.getBody());
-                assertEquals(ErrorCodes.INVALID_NUMBER_FORMAT.getCode(), responseBody.get("code").asText());
+                assertEquals(ErrorTitles.INVALID_NUMBER_FORMAT.getTitle(), responseBody.get("title").asText());
                 assertEquals("The 'num' query parameter must be a valid integer.",
-                        responseBody.get("message").asText());
+                        responseBody.get("detail").asText());
             }
         }
     }
