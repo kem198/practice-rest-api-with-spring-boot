@@ -26,7 +26,8 @@ public class GreetingControllerTests {
         @DisplayName("デフォルトの名前で挨拶を返す")
         void returnsGreetingWithDefaultName() {
             // Act
-            ResponseEntity<GreetingDto> response = restTemplate.getForEntity("/api/v1/greeting", GreetingDto.class);
+            ResponseEntity<GreetingDto> response = restTemplate.getForEntity("/api/greeting/v1/hello",
+                    GreetingDto.class);
 
             // Assert
             assertEquals(HttpStatus.OK, response.getStatusCode());
@@ -37,7 +38,7 @@ public class GreetingControllerTests {
         @DisplayName("指定された名前で挨拶を返す")
         void returnsGreetingWithSpecifiedName() {
             // Act
-            ResponseEntity<GreetingDto> response = restTemplate.getForEntity("/api/v1/greeting?name=KeM198",
+            ResponseEntity<GreetingDto> response = restTemplate.getForEntity("/api/greeting/v1/hello?name=KeM198",
                     GreetingDto.class);
 
             // Assert

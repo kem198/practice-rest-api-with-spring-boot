@@ -10,12 +10,12 @@ import net.kem198.practice_rest_api_with_spring_boot.dto.GreetingDto;
 import net.kem198.practice_rest_api_with_spring_boot.service.GreetingService;
 
 @RestController
-@RequestMapping("/api/v1/greeting")
+@RequestMapping("/api/greeting/v1")
 public class GreetingController {
     @Autowired
     private GreetingService GreetingService;
 
-    @GetMapping
+    @GetMapping("/hello")
     public GreetingDto getContent(@RequestParam(value = "name", defaultValue = "World") String name) {
         GreetingDto greetingDto = GreetingService.processGreeting(name);
 
