@@ -21,7 +21,7 @@ This project is designed to practice the following:
     - [Run](#run)
 - [Examples](#examples)
     - [Setup environment](#setup-environment)
-    - [Run Application Server](#run-application-server)
+    - [Run API Server](#run-api-server)
     - [Run DB Server on Docker Container](#run-db-server-on-docker-container)
     - [Demo APIs](#demo-apis)
         - [`/api/greeting/v1`](#apigreetingv1)
@@ -102,7 +102,7 @@ $ cd /path/to/your/repo/
 $ git clone https://github.com/kem198/practice-rest-api-with-spring-boot.git
 ```
 
-### Run Application Server
+### Run API Server
 
 ```shell
 # Move to repository root
