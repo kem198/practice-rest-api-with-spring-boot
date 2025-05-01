@@ -1,14 +1,14 @@
-DROP TABLE IF EXISTS example_table;
+DROP TABLE IF EXISTS examples;
 
 CREATE TABLE
-    IF NOT EXISTS example_table (
+    IF NOT EXISTS examples (
         id SERIAL PRIMARY KEY,
         name VARCHAR(100) NOT NULL,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
 
 INSERT INTO
-    example_table (name)
+    examples (name)
 VALUES
     ('Example 1'),
     ('Example 2'),

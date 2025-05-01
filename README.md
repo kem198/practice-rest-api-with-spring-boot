@@ -141,19 +141,19 @@ psql (17.4 (Debian 17.4-1.pgdg120+2))
 Type "help" for help.
 
 practice_rest_api_with_spring_boot_db=# \d
-                  List of relations
- Schema |         Name         |   Type   |  Owner
---------+----------------------+----------+----------
- public | example_table        | table    | postgres
- public | example_table_id_seq | sequence | postgres
+               List of relations
+ Schema |      Name       |   Type   |  Owner
+--------+-----------------+----------+----------
+ public | examples        | table    | postgres
+ public | examples_id_seq | sequence | postgres
 (2 rows)
 
-practice_rest_api_with_spring_boot_db=# SELECT * FROM example_table;
+practice_rest_api_with_spring_boot_db=# SELECT * FROM examples;
  id |   name    |         created_at
 ----+-----------+----------------------------
-  1 | Example 1 | 2025-05-01 20:49:44.679373
-  2 | Example 2 | 2025-05-01 20:49:44.679373
-  3 | Example 3 | 2025-05-01 20:49:44.679373
+  1 | Example 1 | 2025-05-01 21:24:38.143514
+  2 | Example 2 | 2025-05-01 21:24:38.143514
+  3 | Example 3 | 2025-05-01 21:24:38.143514
 (3 rows)
 
 practice_rest_api_with_spring_boot_db=# exit
