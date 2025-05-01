@@ -20,8 +20,9 @@ This project is designed to practice the following:
     - [Build](#build)
     - [Run](#run)
 - [Examples](#examples)
-    - [Setup](#setup)
-    - [Build and Run](#build-and-run)
+    - [Setup environment](#setup-environment)
+    - [Run Application Server](#run-application-server)
+    - [Run DB Server on Docker Container](#run-db-server-on-docker-container)
     - [Demo APIs](#demo-apis)
         - [`/api/greeting/v1`](#apigreetingv1)
         - [`/api/fizzbuzz/v1`](#apifizzbuzzv1)
@@ -36,6 +37,7 @@ This project is designed to practice the following:
 ### Required
 
 - [JDK 21](https://openjdk.org/projects/jdk/21/)
+- [Docker](https://www.docker.com/)
 
 ### Recommended
 
@@ -70,7 +72,7 @@ java -jar build/libs/practice-rest-api-with-spring-boot-0.0.1-SNAPSHOT.jar
 
 ## Examples
 
-### Setup
+### Setup environment
 
 ```shell
 # Example Environment: Ubuntu 24.04 on WSL
@@ -100,7 +102,7 @@ $ cd /path/to/your/repo/
 $ git clone https://github.com/kem198/practice-rest-api-with-spring-boot.git
 ```
 
-### Build and Run
+### Run Application Server
 
 ```shell
 # Move to repository root
@@ -115,6 +117,46 @@ $ java -jar build/libs/practice-rest-api-with-spring-boot-0.0.1-SNAPSHOT.jar
 # Request to API
 $ curl 'http://localhost:8080/api/v1/greeting'
 {"id":1,"content":"Hello, World!"}%
+```
+
+### Run DB Server on Docker Container
+
+```sh
+# Current directory is the repository root
+$ pwd
+/path/to/your/repo/practice-rest-api-with-spring-boot
+
+# Copy and rename .env.example to .env
+$ cp .env.example .env
+
+# (Optional) Edit .env for your settings
+$ vim .env
+
+# Start the database service
+$ docker compose up -d
+
+# Connect to the database and execute queries
+$ docker compose exec db psql -U postgres -d practice_rest_api_with_spring_boot_db
+psql (17.4 (Debian 17.4-1.pgdg120+2))
+Type "help" for help.
+
+practice_rest_api_with_spring_boot_db=# \d
+                  List of relations
+ Schema |         Name         |   Type   |  Owner
+--------+----------------------+----------+----------
+ public | example_table        | table    | postgres
+ public | example_table_id_seq | sequence | postgres
+(2 rows)
+
+practice_rest_api_with_spring_boot_db=# SELECT * FROM example_table;
+ id |   name    |         created_at
+----+-----------+----------------------------
+  1 | Example 1 | 2025-05-01 20:49:44.679373
+  2 | Example 2 | 2025-05-01 20:49:44.679373
+  3 | Example 3 | 2025-05-01 20:49:44.679373
+(3 rows)
+
+practice_rest_api_with_spring_boot_db=# exit
 ```
 
 ### Demo APIs
