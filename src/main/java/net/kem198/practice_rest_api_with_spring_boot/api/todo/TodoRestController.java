@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 @RequestMapping("/api/v1/todos")
@@ -54,5 +55,13 @@ public class TodoRestController {
         Todo todo = todoService.findOne(todoId);
         TodoResource todoResource = beanMapper.map(todo);
         return todoResource;
+    }
+
+    @PutMapping("{todoId}")
+    @ResponseStatus(HttpStatus.OK)
+    public TodoResource putTodo(@PathVariable("todoId") String todoId) {
+        Todo finishedTodo = todoService.finish(todoId);
+        TodoResource finishedTodoResource = beanMapper.map(finishedTodo);
+        return finishedTodoResource;
     }
 }
