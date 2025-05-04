@@ -229,13 +229,43 @@ Connection: close
 #### `/api/v1/todos`
 
 ```sh
-$ curl -i -X GET 'http://localhost:8080/api/v1/todos'
+$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/api/v1/todos' | jq
 HTTP/1.1 200
 Content-Type: application/json
 Transfer-Encoding: chunked
-Date: Sun, 04 May 2025 09:07:19 GMT
+Date: Sun, 04 May 2025 09:31:59 GMT
 
-[]%
+[]
+
+$ curl -s -D /dev/stderr -X POST http://localhost:8080/api/v1/todos \
+-H 'Content-Type: application/json' \
+-d '{"todoTitle": "Hello World!"}' | jq
+HTTP/1.1 201
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sun, 04 May 2025 09:30:59 GMT
+
+{
+  "todoId": "a9502e35-b177-43ea-9639-ba529360e2cc",
+  "todoTitle": "Hello World!",
+  "finished": false,
+  "createdAt": "2025-05-04T09:30:59.728+00:00"
+}
+
+$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/api/v1/todos' | jq
+HTTP/1.1 200
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sun, 04 May 2025 09:31:26 GMT
+
+[
+  {
+    "todoId": "a9502e35-b177-43ea-9639-ba529360e2cc",
+    "todoTitle": "Hello World!",
+    "finished": false,
+    "createdAt": "2025-05-04T09:30:59.728+00:00"
+  }
+]
 ```
 
 ## References
