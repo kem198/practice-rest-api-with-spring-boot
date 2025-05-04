@@ -1,4 +1,4 @@
-package net.kem198.practice_rest_api_with_spring_boot.controller;
+package net.kem198.practice_rest_api_with_spring_boot.api.fizzbuzz;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -19,7 +19,7 @@ import net.kem198.practice_rest_api_with_spring_boot.constants.ErrorTitles;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class FizzBuzzControllerTests {
+public class FizzBuzzRestControllerTests {
 
     private ObjectMapper objectMapper;
 

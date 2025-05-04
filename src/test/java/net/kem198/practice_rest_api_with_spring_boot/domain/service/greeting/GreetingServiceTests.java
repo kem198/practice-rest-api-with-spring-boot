@@ -1,4 +1,4 @@
-package net.kem198.practice_rest_api_with_spring_boot.service;
+package net.kem198.practice_rest_api_with_spring_boot.domain.service.greeting;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import net.kem198.practice_rest_api_with_spring_boot.dto.GreetingDto;
+import net.kem198.practice_rest_api_with_spring_boot.api.greeting.GreetingResource;
 
 @SpringBootTest
 public class GreetingServiceTests {
@@ -21,10 +21,10 @@ public class GreetingServiceTests {
         @DisplayName("文字列を与えると GreetingDto 型の結果を返す")
         void returnsGreetingDtoForString() {
             // Act
-            GreetingDto greetingDto = GreetingService.processGreeting("World");
+            GreetingResource greetingDto = GreetingService.processGreeting("World");
 
             // Assert
-            assertEquals(new GreetingDto(1, "Hello, World!"), greetingDto);
+            assertEquals(new GreetingResource(1, "Hello, World!"), greetingDto);
         }
     }
 }

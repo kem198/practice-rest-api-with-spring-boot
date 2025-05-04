@@ -1,4 +1,4 @@
-package net.kem198.practice_rest_api_with_spring_boot.service;
+package net.kem198.practice_rest_api_with_spring_boot.domain.service.fizzbuzz;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

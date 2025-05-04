@@ -1,4 +1,4 @@
-package net.kem198.practice_rest_api_with_spring_boot.controller;
+package net.kem198.practice_rest_api_with_spring_boot.api.fizzbuzz;
 
 import java.net.URI;
 import java.util.Map;
@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import net.kem198.practice_rest_api_with_spring_boot.constants.ErrorTitles;
-import net.kem198.practice_rest_api_with_spring_boot.service.FizzBuzzService;
+import net.kem198.practice_rest_api_with_spring_boot.domain.service.fizzbuzz.FizzBuzzService;
 
 @RestController
 @RequestMapping("/api/fizzbuzz/v1")
-public class FizzBuzzController {
+public class FizzBuzzRestController {
     @Autowired
     private FizzBuzzService fizzBuzzService;
 

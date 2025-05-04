@@ -1,4 +1,4 @@
-package net.kem198.practice_rest_api_with_spring_boot.controller;
+package net.kem198.practice_rest_api_with_spring_boot.api.greeting;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -10,12 +10,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import net.kem198.practice_rest_api_with_spring_boot.dto.GreetingDto;
-
 import org.springframework.boot.test.web.client.TestRestTemplate;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class GreetingControllerTests {
+public class GreetingRestControllerTests {
 
     @Autowired
     private TestRestTemplate restTemplate;
@@ -26,8 +24,8 @@ public class GreetingControllerTests {
         @DisplayName("デフォルトの名前で挨拶を返す")
         void returnsGreetingWithDefaultName() {
             // Act
-            ResponseEntity<GreetingDto> response = restTemplate.getForEntity("/api/greeting/v1/hello",
-                    GreetingDto.class);
+            ResponseEntity<GreetingResource> response = restTemplate.getForEntity("/api/greeting/v1/hello",
+                    GreetingResource.class);
 
             // Assert
             assertEquals(HttpStatus.OK, response.getStatusCode());
@@ -38,8 +36,8 @@ public class GreetingControllerTests {
         @DisplayName("指定された名前で挨拶を返す")
         void returnsGreetingWithSpecifiedName() {
             // Act
-            ResponseEntity<GreetingDto> response = restTemplate.getForEntity("/api/greeting/v1/hello?name=KeM198",
-                    GreetingDto.class);
+            ResponseEntity<GreetingResource> response = restTemplate.getForEntity("/api/greeting/v1/hello?name=KeM198",
+                    GreetingResource.class);
 
             // Assert
             assertEquals(HttpStatus.OK, response.getStatusCode());
