@@ -3,10 +3,9 @@
 
 This project is designed to practice the following:
 
-- Building a **REST API**
-- Using **Spring Boot**
-- Applying **Test-Driven Development** (TDD)
-- Implementing **Continuous Integration** (CI) for Java applications
+- Building a **REST API** with **Spring Boot** .
+- Applying **Test-Driven Development** (TDD) .
+- Implementing **Continuous Integration** (CI) for Java applications.
 
 <!-- omit in toc -->
 ## TOC
