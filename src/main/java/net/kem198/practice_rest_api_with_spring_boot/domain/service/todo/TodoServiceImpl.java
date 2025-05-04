@@ -4,10 +4,10 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import jakarta.inject.Inject;
 import net.kem198.practice_rest_api_with_spring_boot.domain.model.Todo;
 import net.kem198.practice_rest_api_with_spring_boot.domain.repository.todo.TodoRepository;
 
@@ -16,7 +16,7 @@ import net.kem198.practice_rest_api_with_spring_boot.domain.repository.todo.Todo
 public class TodoServiceImpl implements TodoService {
     private static final long MAX_UNFINISHED_COUNT = 5;
 
-    @Inject
+    @Autowired
     TodoRepository todoRepository;
 
     @Override
