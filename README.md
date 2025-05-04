@@ -266,6 +266,19 @@ Date: Sun, 04 May 2025 09:31:26 GMT
     "createdAt": "2025-05-04T09:30:59.728+00:00"
   }
 ]
+
+$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/api/v1/todos/a9502e35-b177-43ea-9639-ba529360e2cc' | jq
+HTTP/1.1 200
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sun, 04 May 2025 09:40:29 GMT
+
+{
+  "todoId": "a9502e35-b177-43ea-9639-ba529360e2cc",
+  "todoTitle": "Hello World!",
+  "finished": false,
+  "createdAt": "2025-05-04T09:40:06.785+00:00"
+}
 ```
 
 ## References
