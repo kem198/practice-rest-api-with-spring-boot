@@ -26,6 +26,7 @@ This project is designed to practice the following:
     - [Demo APIs](#demo-apis)
         - [`/api/greeting/v1`](#apigreetingv1)
         - [`/api/fizzbuzz/v1`](#apifizzbuzzv1)
+        - [`/api/todos/v1`](#apitodosv1)
 - [References](#references)
     - [Installation](#installation)
     - [Getting Started](#getting-started)
@@ -223,6 +224,18 @@ Connection: close
   "detail": "The 'num' query parameter must be a valid integer.",
   "instance": "/api/fizzbuzz/v1"
 }
+```
+
+#### `/api/todos/v1`
+
+```sh
+$ curl -i -X GET 'http://localhost:8080/api/todos/v1'
+HTTP/1.1 200
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sun, 04 May 2025 09:07:19 GMT
+
+[]%
 ```
 
 ## References
