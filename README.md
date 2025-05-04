@@ -292,6 +292,17 @@ Date: Sun, 04 May 2025 09:47:41 GMT
   "finished": true,
   "createdAt": "2025-05-04T09:46:24.529+00:00"
 }
+
+$ curl -s -D /dev/stderr -X DELETE 'http://localhost:8080/api/v1/todos/45eef1c5-d1ac-4698-8758-cd7c9aa9949c' | jq
+HTTP/1.1 204 Date: Sun, 04 May 2025 09:51:12 GMT
+
+$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/api/v1/todos' | jq
+HTTP/1.1 200
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Sun, 04 May 2025 09:51:28 GMT
+
+[]
 ```
 
 ## References
