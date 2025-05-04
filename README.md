@@ -30,6 +30,7 @@ This project is designed to practice the following:
 - [References](#references)
     - [Installation](#installation)
     - [Getting Started](#getting-started)
+    - [Design Pattern](#design-pattern)
     - [API](#api)
     - [curl](#curl)
 
@@ -316,13 +317,21 @@ Date: Sun, 04 May 2025 09:51:28 GMT
 
 - [Spring Boot REST API の作成 - 公式サンプルコード](https://spring.pleiades.io/guides/gs/rest-service)
 
+### Design Pattern
+
+- [Macchinetta Server Framework (1.x) Development Guideline — Macchinetta Server Framework (1.x) Development Guideline 1.9.1.RELEASE documentation](https://macchinetta.github.io/server-guideline-thymeleaf/current/ja/index.html)
+    - [2.4. アプリケーションのレイヤ化](https://macchinetta.github.io/server-guideline-thymeleaf/current/ja/Overview/ApplicationLayering.html)
+    - [5.1. RESTful Web Service](https://macchinetta.github.io/server-guideline-thymeleaf/current/ja/ArchitectureInDetail/WebServiceDetail/REST.html)
+
 ### API
 
 - [エラーレスポンス :: Spring Framework - リファレンス](https://spring.pleiades.io/spring-framework/reference/web/webmvc/mvc-ann-rest-exceptions.html)
     - [RFC 9457 - Problem Details for HTTP APIs](https://datatracker.ietf.org/doc/html/rfc9457)
     - [RFC 9457 - Problem Details for HTTP APIs 日本語訳](https://tex2e.github.io/rfc-translater/html/rfc9457.html)
     - [REST API Common Spec としての HTTP Status Code と Error の提案 - Affamative Way](https://cos31.hatenablog.jp/entry/2023/12/14/093435)
-- [Google Tasks API  \|  Google for Developers](https://developers.google.com/workspace/tasks/reference/rest?hl=ja)
+- [Macchinetta Server Framework (1.x) Development Guideline — Macchinetta Server Framework (1.x) Development Guideline 1.9.1.RELEASE documentation](https://macchinetta.github.io/server-guideline-thymeleaf/current/ja/index.html)
+    - [11.1. チュートリアル(Todoアプリケーション)](https://macchinetta.github.io/server-guideline-thymeleaf/current/ja/Tutorial/TutorialTodo.html)
+    - [11.2. チュートリアル(Todoアプリケーション REST編)](https://macchinetta.github.io/server-guideline-thymeleaf/current/ja/Tutorial/TutorialREST.html)
 
 ### curl
 
