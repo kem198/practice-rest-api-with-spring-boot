@@ -21,6 +21,17 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     @Transactional(readOnly = true)
+    public Todo findOne(String todoId) {
+        Todo todo = todoRepository.findById(todoId);
+        if (todo == null) {
+            throw new IllegalArgumentException(
+                    String.format("[E404] The requested Todo is not found. (id=%s)", todoId));
+        }
+        return todo;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public Collection<Todo> findAll() {
         return todoRepository.findAll();
     }
@@ -63,12 +74,4 @@ public class TodoServiceImpl implements TodoService {
         todoRepository.delete(todo);
     }
 
-    private Todo findOne(String todoId) {
-        Todo todo = todoRepository.findById(todoId);
-        if (todo == null) {
-            throw new IllegalArgumentException(
-                    String.format("[E404] The requested Todo is not found. (id=%s)", todoId));
-        }
-        return todo;
-    }
 }

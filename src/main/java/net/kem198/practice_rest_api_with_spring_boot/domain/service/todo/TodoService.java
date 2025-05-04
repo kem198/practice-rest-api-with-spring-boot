@@ -5,6 +5,8 @@ import java.util.Collection;
 import net.kem198.practice_rest_api_with_spring_boot.domain.model.Todo;
 
 public interface TodoService {
+    Todo findOne(String todoId);
+
     Collection<Todo> findAll();
 
     Todo create(Todo todo);
