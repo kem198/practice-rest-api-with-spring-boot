@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import net.kem198.practice_rest_api_with_spring_boot.domain.service.greeting.GreetingService;
 
 @RestController
-@RequestMapping("/api/greeting/v1")
+@RequestMapping("/api/v1/greeting")
 public class GreetingRestController {
     @Autowired
     private GreetingService GreetingService;

@@ -24,9 +24,9 @@ This project is designed to practice the following:
     - [Run API Server](#run-api-server)
     - [Run DB Server on Docker Container](#run-db-server-on-docker-container)
     - [Demo APIs](#demo-apis)
-        - [`/api/greeting/v1`](#apigreetingv1)
-        - [`/api/fizzbuzz/v1`](#apifizzbuzzv1)
-        - [`/api/todos/v1`](#apitodosv1)
+        - [`/api/v1/greeting`](#apiv1greeting)
+        - [`/api/v1/fizzbuzz`](#apiv1fizzbuzz)
+        - [`/api/v1/todos`](#apiv1todos)
 - [References](#references)
     - [Installation](#installation)
     - [Getting Started](#getting-started)
@@ -162,10 +162,10 @@ practice_rest_api_with_spring_boot_db=# exit
 
 ### Demo APIs
 
-#### `/api/greeting/v1`
+#### `/api/v1/greeting`
 
 ```sh
-$ curl -i -X GET 'http://localhost:8080/api/greeting/v1/hello'
+$ curl -i -X GET 'http://localhost:8080/api/v1/greeting/hello'
 HTTP/1.1 200
 Content-Type: application/json
 Transfer-Encoding: chunked
@@ -173,7 +173,7 @@ Date: Mon, 28 Apr 2025 05:32:49 GMT
 
 {"id":1,"content":"Hello, World!"}%
 
-$ curl -i -X GET 'http://localhost:8080/api/greeting/v1/hello?name=kem198'
+$ curl -i -X GET 'http://localhost:8080/api/v1/greeting/hello?name=kem198'
 HTTP/1.1 200
 Content-Type: application/json
 Transfer-Encoding: chunked
@@ -182,10 +182,10 @@ Date: Mon, 28 Apr 2025 05:33:03 GMT
 {"id":2,"content":"Hello, kem198!"}%
 ```
 
-#### `/api/fizzbuzz/v1`
+#### `/api/v1/fizzbuzz`
 
 ```sh
-$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/api/fizzbuzz/v1/convert?num=3' | jq
+$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/api/v1/fizzbuzz/convert?num=3' | jq
 HTTP/1.1 200
 Content-Type: application/json
 Transfer-Encoding: chunked
@@ -195,7 +195,7 @@ Date: Mon, 28 Apr 2025 05:43:50 GMT
   "result": "Fizz"
 }
 
-$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/api/fizzbuzz/v1/convert' | jq
+$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/api/v1/fizzbuzz/convert' | jq
 HTTP/1.1 400
 Content-Type: application/problem+json
 Transfer-Encoding: chunked
@@ -207,10 +207,10 @@ Connection: close
   "title": "Missing Parameter",
   "status": 400,
   "detail": "The 'num' query parameter is required.",
-  "instance": "/api/fizzbuzz/v1"
+  "instance": "/api/v1/fizzbuzz"
 }
 
-$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/api/fizzbuzz/v1/convert?num=abc' | jq
+$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/api/v1/fizzbuzz/convert?num=abc' | jq
 HTTP/1.1 400
 Content-Type: application/problem+json
 Transfer-Encoding: chunked
@@ -222,14 +222,14 @@ Connection: close
   "title": "Invalid Number Format",
   "status": 400,
   "detail": "The 'num' query parameter must be a valid integer.",
-  "instance": "/api/fizzbuzz/v1"
+  "instance": "/api/v1/fizzbuzz"
 }
 ```
 
-#### `/api/todos/v1`
+#### `/api/v1/todos`
 
 ```sh
-$ curl -i -X GET 'http://localhost:8080/api/todos/v1'
+$ curl -i -X GET 'http://localhost:8080/api/v1/todos'
 HTTP/1.1 200
 Content-Type: application/json
 Transfer-Encoding: chunked

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @RestController
-@RequestMapping("/api/todos/v1")
+@RequestMapping("/api/v1/todos")
 public class TodoRestController {
 
     @Autowired
