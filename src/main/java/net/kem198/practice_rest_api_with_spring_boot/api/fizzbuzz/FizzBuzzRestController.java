@@ -29,10 +29,10 @@ public class FizzBuzzRestController {
     }
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
-    public ProblemDetail handleTypeMismatch(MethodArgumentTypeMismatchException ex) {
+    public ResponseEntity<ProblemDetail> handleTypeMismatch(MethodArgumentTypeMismatchException ex) {
         ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
         problemDetail.setTitle(ErrorTitles.INVALID_NUMBER_FORMAT.getTitle());
         problemDetail.setDetail(String.format("The '%s' query parameter must be a valid integer.", ex.getName()));
-        return problemDetail;
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(problemDetail);
     }
 }
