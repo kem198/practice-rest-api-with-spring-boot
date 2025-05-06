@@ -21,15 +21,6 @@ import net.kem198.practice_rest_api_with_spring_boot.domain.exception.common.Bus
 @ControllerAdvice
 public class RestGlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-    private Map<String, Object> toErrorDetail(FieldError fieldError) {
-        return Map.of(
-                "field", fieldError.getField(),
-                "rejectedValue", fieldError.getRejectedValue(),
-                "code", fieldError.getCode(),
-                "objectName", fieldError.getObjectName(),
-                "message", fieldError.getDefaultMessage());
-    }
-
     @ExceptionHandler(BusinessException.class)
     public ResponseEntity<ProblemDetail> handleBusinessException(BusinessException ex) {
         return ResponseEntity
@@ -58,4 +49,12 @@ public class RestGlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(problemDetail);
     }
 
+    private Map<String, Object> toErrorDetail(FieldError fieldError) {
+        return Map.of(
+                "field", fieldError.getField(),
+                "rejectedValue", fieldError.getRejectedValue(),
+                "code", fieldError.getCode(),
+                "objectName", fieldError.getObjectName(),
+                "message", fieldError.getDefaultMessage());
+    }
 }
