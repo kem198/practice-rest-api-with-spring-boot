@@ -62,7 +62,7 @@ public class FizzBuzzRestControllerTests {
                 // Assert
                 assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
                 JsonNode responseBody = objectMapper.readTree(response.getBody());
-                assertEquals("Bad Request", responseBody.get("title").asText());
+                assertEquals(HttpStatus.BAD_REQUEST.getReasonPhrase(), responseBody.get("title").asText());
                 assertEquals("Required parameter 'num' is not present.", responseBody.get("detail").asText());
             }
 
