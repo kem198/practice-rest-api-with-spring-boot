@@ -1,4 +1,4 @@
-package net.kem198.practice_rest_api_with_spring_boot.api.fizzbuzz;
+package net.kem198.practice_rest_api_with_spring_boot.api.common.error;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
