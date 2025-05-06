@@ -13,8 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/error")
 public class ErrorController {
     @GetMapping
-    public void getError() {
+    public void throwErrorResponseException() {
         throw new ErrorResponseException(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @GetMapping("/throw-system-error")
+    public void throwSystemError() throws Exception {
+        throw new Exception();
     }
 
     @GetMapping("/detail")
