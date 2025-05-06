@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.http.ResponseEntity;
 
 @RestController
 @RequestMapping("/api/v1/todos")
@@ -32,43 +32,39 @@ public class TodoRestController {
     TodoMapper beanMapper;
 
     @GetMapping
-    @ResponseStatus(HttpStatus.OK)
-    public List<TodoResource> getTodos() {
+    public ResponseEntity<List<TodoResource>> getTodos() {
         Collection<Todo> todos = todoService.findAll();
         List<TodoResource> todoResources = new ArrayList<>();
         for (Todo todo : todos) {
             todoResources.add(beanMapper.map(todo));
         }
-        return todoResources;
+        return ResponseEntity.ok(todoResources);
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public TodoResource postTodos(@RequestBody @Validated TodoResource todoResource) {
+    public ResponseEntity<TodoResource> postTodos(@RequestBody @Validated TodoResource todoResource) {
         Todo createdTodo = todoService.create(beanMapper.map(todoResource));
         TodoResource createdTodoResponse = beanMapper.map(createdTodo);
-        return createdTodoResponse;
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdTodoResponse);
     }
 
     @GetMapping("{todoId}")
-    @ResponseStatus(HttpStatus.OK)
-    public TodoResource getTodo(@PathVariable("todoId") String todoId) {
+    public ResponseEntity<TodoResource> getTodo(@PathVariable("todoId") String todoId) {
         Todo todo = todoService.findOne(todoId);
         TodoResource todoResource = beanMapper.map(todo);
-        return todoResource;
+        return ResponseEntity.ok(todoResource);
     }
 
     @PutMapping("{todoId}")
-    @ResponseStatus(HttpStatus.OK)
-    public TodoResource putTodo(@PathVariable("todoId") String todoId) {
+    public ResponseEntity<TodoResource> putTodo(@PathVariable("todoId") String todoId) {
         Todo finishedTodo = todoService.finish(todoId);
         TodoResource finishedTodoResource = beanMapper.map(finishedTodo);
-        return finishedTodoResource;
+        return ResponseEntity.ok(finishedTodoResource);
     }
 
     @DeleteMapping("{todoId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteTodo(@PathVariable("todoId") String todoId) {
+    public ResponseEntity<Void> deleteTodo(@PathVariable("todoId") String todoId) {
         todoService.delete(todoId);
+        return ResponseEntity.noContent().build();
     }
 }
