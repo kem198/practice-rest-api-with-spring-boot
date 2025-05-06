@@ -11,27 +11,27 @@ This project is designed to practice the following:
 ## TOC
 
 - [Requirements](#requirements)
-    - [Required](#required)
-    - [Recommended](#recommended)
+  - [Required](#required)
+  - [Recommended](#recommended)
 - [Commands](#commands)
-    - [Test](#test)
-    - [Run for Development](#run-for-development)
-    - [Build](#build)
-    - [Run](#run)
+  - [Test](#test)
+  - [Run for Development](#run-for-development)
+  - [Build](#build)
+  - [Run](#run)
 - [Examples](#examples)
-    - [Setup environment](#setup-environment)
-    - [Run API Server](#run-api-server)
-    - [Run DB Server on Docker Container](#run-db-server-on-docker-container)
-    - [Demo APIs](#demo-apis)
-        - [`/api/v1/greeting`](#apiv1greeting)
-        - [`/api/v1/error`](#apiv1error)
-        - [`/api/v1/fizzbuzz`](#apiv1fizzbuzz)
-        - [`/api/v1/todos`](#apiv1todos)
+  - [Setup environment](#setup-environment)
+  - [Run API Server](#run-api-server)
+  - [Run DB Server on Docker Container](#run-db-server-on-docker-container)
+  - [Demo APIs](#demo-apis)
+    - [`/api/v1/greeting`](#apiv1greeting)
+    - [`/api/v1/error`](#apiv1error)
+    - [`/api/v1/fizzbuzz`](#apiv1fizzbuzz)
+    - [`/api/v1/todos`](#apiv1todos)
 - [References](#references)
-    - [Installation](#installation)
-    - [Getting Started](#getting-started)
-    - [Design Pattern](#design-pattern)
-    - [Others](#others)
+  - [Installation](#installation)
+  - [Getting Started](#getting-started)
+  - [Design Pattern](#design-pattern)
+  - [Others](#others)
 
 ## Requirements
 
@@ -212,6 +212,21 @@ Connection: close
   "status": 500,
   "detail": "Customized error details",
   "instance": "/api/v1/error/detail"
+}
+
+$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/api/v1/error/throw-system-error' | jq
+HTTP/1.1 500
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Tue, 06 May 2025 10:02:16 GMT
+Connection: close
+
+{
+  "type": "about:blank",
+  "title": "Internal Server Error",
+  "status": 500,
+  "detail": "An unexpected error occurred. Please contact support if the problem persists.",
+  "instance": "/api/v1/error/throw-system-error"
 }
 ```
 
