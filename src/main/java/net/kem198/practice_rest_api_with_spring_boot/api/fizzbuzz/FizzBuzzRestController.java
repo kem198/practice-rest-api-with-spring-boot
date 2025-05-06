@@ -22,10 +22,14 @@ public class FizzBuzzRestController {
     @Autowired
     private FizzBuzzService fizzBuzzService;
 
+    @Autowired
+    private FizBuzzMapper fizzBuzzMapper;
+
     @GetMapping("/convert")
-    public ResponseEntity<Map<String, String>> convert(@RequestParam(value = "num") int number) {
+    public ResponseEntity<FizzBuzzResource> convert(@RequestParam(value = "num") int number) {
         String result = fizzBuzzService.processFizzBuzz(number);
-        return ResponseEntity.ok(Map.of("result", result));
+        FizzBuzzResource fizzBuzzResource = fizzBuzzMapper.map(result);
+        return ResponseEntity.ok(fizzBuzzResource);
     }
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
