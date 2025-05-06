@@ -14,7 +14,7 @@ import org.springframework.http.ResponseEntity;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import net.kem198.practice_rest_api_with_spring_boot.constants.ErrorTitles;
+import net.kem198.practice_rest_api_with_spring_boot.domain.constants.ErrorTitles;
 
 import org.springframework.boot.test.web.client.TestRestTemplate;
 

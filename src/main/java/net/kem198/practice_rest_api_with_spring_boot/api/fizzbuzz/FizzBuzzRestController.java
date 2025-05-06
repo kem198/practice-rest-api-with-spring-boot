@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
-import net.kem198.practice_rest_api_with_spring_boot.constants.ErrorTitles;
+import net.kem198.practice_rest_api_with_spring_boot.domain.constants.ErrorTitles;
 import net.kem198.practice_rest_api_with_spring_boot.domain.service.fizzbuzz.FizzBuzzService;
 
 @RestController
