@@ -29,22 +29,4 @@ public class FizzBuzzRestController {
         String result = fizzBuzzService.processFizzBuzz(number);
         return ResponseEntity.ok(Map.of("result", result));
     }
-
-    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
-    public ProblemDetail handleTypeMismatch(MethodArgumentTypeMismatchException ex) {
-        ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
-        problemDetail.setTitle(ErrorTitles.INVALID_NUMBER_FORMAT.getTitle());
-        problemDetail.setDetail(String.format("The '%s' query parameter must be a valid integer.", ex.getName()));
-        problemDetail.setInstance(URI.create("/api/v1/fizzbuzz"));
-        return problemDetail;
-    }
-
-    @ExceptionHandler(MissingServletRequestParameterException.class)
-    public ProblemDetail handleMissingParams(MissingServletRequestParameterException ex) {
-        ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
-        problemDetail.setTitle(ErrorTitles.MISSING_PARAMETER.getTitle());
-        problemDetail.setDetail(String.format("The '%s' query parameter is required.", ex.getParameterName()));
-        problemDetail.setInstance(URI.create("/api/v1/fizzbuzz"));
-        return problemDetail;
-    }
 }
