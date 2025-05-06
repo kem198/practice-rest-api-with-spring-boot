@@ -24,6 +24,7 @@ This project is designed to practice the following:
     - [Run DB Server on Docker Container](#run-db-server-on-docker-container)
     - [Demo APIs](#demo-apis)
         - [`/api/v1/greeting`](#apiv1greeting)
+        - [`/api/v1/error`](#apiv1error)
         - [`/api/v1/fizzbuzz`](#apiv1fizzbuzz)
         - [`/api/v1/todos`](#apiv1todos)
 - [References](#references)
@@ -181,6 +182,24 @@ Date: Mon, 28 Apr 2025 05:33:03 GMT
 {"id":2,"content":"Hello, kem198!"}%
 ```
 
+#### `/api/v1/error`
+
+```sh
+$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/api/v1/error' | jq
+HTTP/1.1 500
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Tue, 06 May 2025 06:09:11 GMT
+Connection: close
+
+{
+  "type": "about:blank",
+  "title": "Internal Server Error",
+  "status": 500,
+  "instance": "/api/v1/error"
+}
+```
+
 #### `/api/v1/fizzbuzz`
 
 ```sh
@@ -329,4 +348,5 @@ Date: Sun, 04 May 2025 09:51:28 GMT
     - [RFC 9457 - Problem Details for HTTP APIs](https://datatracker.ietf.org/doc/html/rfc9457)
     - [RFC 9457 - Problem Details for HTTP APIs 日本語訳](https://tex2e.github.io/rfc-translater/html/rfc9457.html)
     - [REST API Common Spec としての HTTP Status Code と Error の提案 - Affamative Way](https://cos31.hatenablog.jp/entry/2023/12/14/093435)
+    - [Spring Boot 3.0 で入った RFC7807 サポートを色々試す \#Java - Qiita](https://qiita.com/koji-cw/items/422140bd7752e4a82baf)
 - [curl -s -f -D /dev/stderr が優勝 – 株式会社ルーター](https://rooter.jp/web-crawling/curl-s-f-d-dev-stderr-is-the-winner/)
