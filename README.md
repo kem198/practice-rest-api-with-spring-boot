@@ -198,6 +198,21 @@ Connection: close
   "status": 500,
   "instance": "/api/v1/error"
 }
+
+$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/api/v1/error/detail' | jq
+HTTP/1.1 500
+Content-Type: application/problem+json
+Transfer-Encoding: chunked
+Date: Tue, 06 May 2025 06:19:59 GMT
+Connection: close
+
+{
+  "type": "https://example.com",
+  "title": "Internal Server Error",
+  "status": 500,
+  "detail": "Customized error details",
+  "instance": "/api/v1/error/detail"
+}
 ```
 
 #### `/api/v1/fizzbuzz`
