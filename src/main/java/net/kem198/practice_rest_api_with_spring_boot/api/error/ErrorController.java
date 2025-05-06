@@ -21,7 +21,7 @@ public class ErrorController {
     public void getErrorDetail() {
         ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.INTERNAL_SERVER_ERROR);
         problemDetail.setType(URI.create("https://example.com"));
-        problemDetail.setDetail("Customized error details");
+        problemDetail.setDetail("Your error details.");
         throw new ErrorResponseException(HttpStatus.INTERNAL_SERVER_ERROR, problemDetail, null);
     }
 }
