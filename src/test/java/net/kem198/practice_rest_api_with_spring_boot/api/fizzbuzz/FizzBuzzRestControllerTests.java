@@ -2,6 +2,8 @@ package net.kem198.practice_rest_api_with_spring_boot.api.fizzbuzz;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.net.http.HttpResponse;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -10,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpClientErrorException.BadRequest;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -62,8 +66,8 @@ public class FizzBuzzRestControllerTests {
                 // Assert
                 assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
                 JsonNode responseBody = objectMapper.readTree(response.getBody());
-                assertEquals(ErrorTitles.MISSING_PARAMETER.getTitle(), responseBody.get("title").asText());
-                assertEquals("The 'num' query parameter is required.", responseBody.get("detail").asText());
+                assertEquals("Bad Request", responseBody.get("title").asText());
+                assertEquals("Required parameter 'num' is not present.", responseBody.get("detail").asText());
             }
 
             @Test
