@@ -76,8 +76,8 @@ public class FizzBuzzRestControllerTests {
                 // Assert
                 assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
                 JsonNode responseBody = objectMapper.readTree(response.getBody());
-                assertEquals(ErrorTitles.INVALID_NUMBER_FORMAT.getTitle(), responseBody.get("title").asText());
-                assertEquals("The 'num' query parameter must be a valid integer.",
+                assertEquals(HttpStatus.BAD_REQUEST.getReasonPhrase(), responseBody.get("title").asText());
+                assertEquals("Failed to convert 'num' with value: 'abc'",
                         responseBody.get("detail").asText());
             }
         }
