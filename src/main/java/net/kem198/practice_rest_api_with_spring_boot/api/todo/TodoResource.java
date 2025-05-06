@@ -16,6 +16,9 @@ public class TodoResource implements Serializable {
     @Size(min = 1, max = 30)
     private String todoTitle;
 
+    @Size(min = 1, max = 50)
+    private String todoDescription;
+
     private boolean finished;
 
     private Date createdAt;
@@ -34,6 +37,14 @@ public class TodoResource implements Serializable {
 
     public void setTodoTitle(String todoTitle) {
         this.todoTitle = todoTitle;
+    }
+
+    public String getTodoDescription() {
+        return todoDescription;
+    }
+
+    public void setTodoDescription(String todoDescription) {
+        this.todoDescription = todoDescription;
     }
 
     public boolean isFinished() {
