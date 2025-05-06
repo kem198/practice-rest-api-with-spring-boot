@@ -61,6 +61,30 @@ public class TodoRestControllerTests {
             assertNotNull(responseBody.get("todoId").asText());
             assertNotNull(responseBody.get("createdAt").asText());
         }
+
+        @DisplayName("todoTitle の文字数が 31 以上の場合は業務例外を返す")
+        @Test
+        void returnsBusinessExceptionWhenTodoTitleOvered() throws Exception {
+            // Arrange
+            String requestBody = """
+                        {
+                            "todoTitle": "1234567890123456789012345678901",
+                            "todoDescription": "Hello Todo Description!"
+                        }
+                    """;
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(org.springframework.http.MediaType.APPLICATION_JSON);
+            HttpEntity<String> requestEntity = new HttpEntity<>(requestBody, headers);
+
+            // Act
+            ResponseEntity<String> response = restTemplate.postForEntity("/api/v1/todos", requestEntity, String.class);
+
+            // Assert
+            assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+            JsonNode responseBody = objectMapper.readTree(response.getBody());
+            assertEquals("Invalid request content.", responseBody.get("detail").asText());
+        }
     }
 
     @Nested
