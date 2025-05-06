@@ -14,8 +14,6 @@ import org.springframework.http.ResponseEntity;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import net.kem198.practice_rest_api_with_spring_boot.constants.ErrorTitles;
-
 import org.springframework.boot.test.web.client.TestRestTemplate;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -62,8 +60,8 @@ public class FizzBuzzRestControllerTests {
                 // Assert
                 assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
                 JsonNode responseBody = objectMapper.readTree(response.getBody());
-                assertEquals(ErrorTitles.MISSING_PARAMETER.getTitle(), responseBody.get("title").asText());
-                assertEquals("The 'num' query parameter is required.", responseBody.get("detail").asText());
+                assertEquals(HttpStatus.BAD_REQUEST.getReasonPhrase(), responseBody.get("title").asText());
+                assertEquals("Required parameter 'num' is not present.", responseBody.get("detail").asText());
             }
 
             @Test
@@ -76,8 +74,8 @@ public class FizzBuzzRestControllerTests {
                 // Assert
                 assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
                 JsonNode responseBody = objectMapper.readTree(response.getBody());
-                assertEquals(ErrorTitles.INVALID_NUMBER_FORMAT.getTitle(), responseBody.get("title").asText());
-                assertEquals("The 'num' query parameter must be a valid integer.",
+                assertEquals(HttpStatus.BAD_REQUEST.getReasonPhrase(), responseBody.get("title").asText());
+                assertEquals("Failed to convert 'num' with value: 'abc'",
                         responseBody.get("detail").asText());
             }
         }
