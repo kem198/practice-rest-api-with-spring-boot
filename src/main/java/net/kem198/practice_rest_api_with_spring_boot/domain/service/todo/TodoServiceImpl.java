@@ -5,9 +5,13 @@ import java.util.Date;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ProblemDetail;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import net.kem198.practice_rest_api_with_spring_boot.domain.exception.BusinessException;
+import net.kem198.practice_rest_api_with_spring_boot.domain.exception.ResourceNotFoundException;
 import net.kem198.practice_rest_api_with_spring_boot.domain.model.Todo;
 import net.kem198.practice_rest_api_with_spring_boot.domain.repository.todo.TodoRepository;
 
@@ -24,8 +28,10 @@ public class TodoServiceImpl implements TodoService {
     public Todo findOne(String todoId) {
         Todo todo = todoRepository.findById(todoId);
         if (todo == null) {
-            throw new IllegalArgumentException(
-                    String.format("[E404] The requested Todo is not found. (id=%s)", todoId));
+            ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(
+                    HttpStatus.NOT_FOUND,
+                    "[E404] The requested Todo is not found. (id=" + todoId + ")");
+            throw new ResourceNotFoundException(problemDetail);
         }
         return todo;
     }
@@ -40,8 +46,10 @@ public class TodoServiceImpl implements TodoService {
     public Todo create(Todo todo) {
         long unfinishedCount = todoRepository.countByFinished(false);
         if (unfinishedCount >= MAX_UNFINISHED_COUNT) {
-            throw new IllegalStateException(
-                    String.format("[E001] The count of un-finished Todo must not be over %d.", MAX_UNFINISHED_COUNT));
+            ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(
+                    HttpStatus.BAD_REQUEST,
+                    "[E001] The count of un-finished Todo must not be over " + MAX_UNFINISHED_COUNT + ".");
+            throw new BusinessException(problemDetail);
         }
 
         String todoId = UUID.randomUUID().toString();
@@ -60,8 +68,10 @@ public class TodoServiceImpl implements TodoService {
     public Todo finish(String todoId) {
         Todo todo = findOne(todoId);
         if (todo.isFinished()) {
-            throw new IllegalStateException(
-                    String.format("[E002] The requested Todo is already finished. (id=%s)", todoId));
+            ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(
+                    HttpStatus.BAD_REQUEST,
+                    "[E002] The requested Todo is already finished. (id=" + todoId + ")");
+            throw new BusinessException(problemDetail);
         }
         todo.setFinished(true);
         todoRepository.update(todo);
