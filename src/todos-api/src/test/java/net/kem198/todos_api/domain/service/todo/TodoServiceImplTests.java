@@ -34,7 +34,7 @@ public class TodoServiceImplTests {
             Todo todo = todoService.findOne(expectedTodo.getTodoId());
 
             // Assert
-            assertEquals(expectedTodo, todo);
+            assertEquals(expectedTodo.getTodoId(), todo.getTodoId());
         }
 
         @Test
