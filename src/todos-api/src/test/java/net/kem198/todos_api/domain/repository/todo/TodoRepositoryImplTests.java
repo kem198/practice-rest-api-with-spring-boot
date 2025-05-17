@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-public class TodoRepositoryImpl {
+public class TodoRepositoryImplTests {
     @Test
     public void assertCheck() {
         assertEquals(1, 1);
