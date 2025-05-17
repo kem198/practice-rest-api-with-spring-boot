@@ -1,7 +1,6 @@
 package net.kem198.todos_api.api.common.error;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.http.HttpHeaders;
@@ -9,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -24,8 +22,8 @@ public class RestGlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
             MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-        List<Map<String, Object>> errors = ex.getBindingResult().getFieldErrors().stream()
-                .map((fieldError) -> toErrorDetail(fieldError))
+        List<ErrorDetail> errors = ex.getBindingResult().getFieldErrors().stream()
+                .map(fieldError -> new ErrorDetail(fieldError))
                 .collect(Collectors.toList());
 
         ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
@@ -47,15 +45,5 @@ public class RestGlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity
                 .status(ex.getProblemDetail().getStatus())
                 .body(ex.getProblemDetail());
-    }
-
-    private Map<String, Object> toErrorDetail(FieldError fieldError) {
-        Map<String, Object> map = new java.util.HashMap<>();
-        map.put("field", fieldError.getField());
-        map.put("rejectedValue", fieldError.getRejectedValue());
-        map.put("code", fieldError.getCode());
-        map.put("objectName", fieldError.getObjectName());
-        map.put("message", fieldError.getDefaultMessage());
-        return map;
     }
 }
