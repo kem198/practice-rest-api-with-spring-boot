@@ -19,8 +19,8 @@ This project is designed to practice the following:
 
 ## Apps
 
-- [todos-web](./src/todos-web/)
-- [todos-api](./src/todos-api/)
+- [./src/todos-web](./src/todos-web/)
+- [./src/todos-api](./src/todos-api/)
 
 ## References
 
