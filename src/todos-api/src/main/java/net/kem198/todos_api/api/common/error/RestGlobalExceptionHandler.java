@@ -23,7 +23,7 @@ public class RestGlobalExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
             MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         List<ErrorDetail> errors = ex.getBindingResult().getFieldErrors().stream()
-                .map(fieldError -> new ErrorDetail(fieldError))
+                .map((fieldError) -> new ErrorDetail(fieldError))
                 .collect(Collectors.toList());
 
         ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
