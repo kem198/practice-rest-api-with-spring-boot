@@ -21,7 +21,7 @@ public class TodoServiceImplTests {
     class FindOneTests {
         @Test
         @DisplayName("引数の todoId と一致する Todo を返す")
-        public void returnsTodoWithMatchingTodoId() {
+        public void returnsTodoForMatchingTodoId() {
             // Arrange
             Todo expectedTodo = new Todo();
             todoService.create(expectedTodo);
@@ -35,7 +35,7 @@ public class TodoServiceImplTests {
 
         @Test
         @DisplayName("引数の todoId と一致する Todo が存在しなければ ResourceNotFoundException をスローする")
-        public void throwsResourceNotFoundExceptionWithNonMatchingTodoId() {
+        public void throwsResourceNotFoundExceptionForNonMatchingTodoId() {
             // Act & Assert
             assertThrows(ResourceNotFoundException.class, () -> {
                 todoService.findOne("1");
