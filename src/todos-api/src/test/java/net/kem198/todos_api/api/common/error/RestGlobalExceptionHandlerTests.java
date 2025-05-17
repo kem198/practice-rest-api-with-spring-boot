@@ -2,10 +2,8 @@ package net.kem198.todos_api.api.common.error;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -116,34 +114,47 @@ public class RestGlobalExceptionHandlerTests {
             ResponseEntity<String> response = restTemplate.postForEntity("/v1/todos", requestEntity, String.class);
 
             // Assert
-            // 配列の順序が保証されないため Set に変換して検証する
-            Set<Map<String, Object>> expectedErrors = Set.of(
-                    Map.of(
-                            "objectName", "todoResource",
-                            "field", "todoTitle",
-                            "rejectedValue", "null",
-                            "code", "NotNull",
-                            "message", "must not be null"),
-                    Map.of(
-                            "objectName", "todoResource",
-                            "field", "todoDescription",
-                            "rejectedValue", "123456789012345678901234567890123456789012345678901",
-                            "code", "Size",
-                            "message", "size must be between 1 and 50"));
-
             JsonNode responseBody = objectMapper.readTree(response.getBody());
-            Set<Map<String, String>> actualErrors = StreamSupport
-                    .stream(responseBody.get("errors").spliterator(), false)
-                    .map(error -> Map.of(
-                            "objectName", error.get("objectName").asText(),
-                            "field", error.get("field").asText(),
-                            "rejectedValue",
-                            error.get("rejectedValue").isNull() ? null : error.get("rejectedValue").asText(),
-                            "code", error.get("code").asText(),
-                            "message", error.get("message").asText()))
-                    .collect(Collectors.toSet());
+            JsonNode errors = responseBody.get("errors");
+            assertEquals(2, errors.size());
+        }
 
-            assertEquals(expectedErrors, actualErrors);
+        @Test
+        @DisplayName("引数のバリデーションエラー要素に所定のエラー詳細内容を含む")
+        void returnsErrorsWithContainedErrorDetails()
+                throws JsonMappingException, JsonProcessingException {
+            // Arrange
+            String requestBody = """
+                        {
+                            "todoDescription": "123456789012345678901234567890123456789012345678901"
+                        }
+                    """;
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            HttpEntity<String> requestEntity = new HttpEntity<>(requestBody, headers);
+
+            // Act
+            ResponseEntity<String> response = restTemplate.postForEntity("/v1/todos", requestEntity, String.class);
+
+            // Assert
+            JsonNode responseBody = objectMapper.readTree(response.getBody());
+            JsonNode errors = responseBody.get("errors");
+            assertTrue(
+                    StreamSupport.stream(errors.spliterator(), false)
+                            .anyMatch((e) -> "todoTitle".equals(e.get("field").asText())
+                                    && e.get("rejectedValue").isNull()
+                                    && "NotNull".equals(e.get("code").asText())
+                                    && "todoResource".equals(e.get("objectName").asText())
+                                    && "must not be null".equals(e.get("message").asText())));
+            assertTrue(
+                    StreamSupport.stream(errors.spliterator(), false)
+                            .anyMatch((e) -> "todoDescription".equals(e.get("field").asText())
+                                    && "123456789012345678901234567890123456789012345678901"
+                                            .equals(e.get("rejectedValue").asText())
+                                    && "Size".equals(e.get("code").asText())
+                                    && "todoResource".equals(e.get("objectName").asText())
+                                    && "size must be between 1 and 50".equals(e.get("message").asText())));
         }
     }
 }
