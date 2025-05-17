@@ -2,6 +2,10 @@ package net.kem198.todos_api.domain.service.todo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -41,7 +45,28 @@ public class TodoServiceImplTests {
                 todoService.findOne("1");
             });
         }
-
     }
 
+    @Nested
+    class FindAllTests {
+        @Test
+        @DisplayName("Todo を Collection 形式で複数返す")
+        public void returnsTodoCollection() {
+            // Arrange
+            Todo expectedTodo1 = new Todo();
+            Todo expectedTodo2 = new Todo();
+            todoService.create(expectedTodo1);
+            todoService.create(expectedTodo2);
+            Collection<Todo> expectedTodoCollection = new ArrayList<Todo>();
+            expectedTodoCollection.add(expectedTodo1);
+            expectedTodoCollection.add(expectedTodo2);
+
+            // Act
+            Collection<Todo> todoCollection = todoService.findAll();
+
+            // Assert
+            assertTrue(todoCollection.containsAll(expectedTodoCollection));
+            assertEquals(expectedTodoCollection.size(), todoCollection.size());
+        }
+    }
 }
