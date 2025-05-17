@@ -1,11 +1,11 @@
 package net.kem198.todos_api.domain.constants;
 
-public enum ExampleConstatns {
+public enum ExampleConstants {
     GENERIC_ERROR("Generic Error");
 
     private final String title;
 
-    ExampleConstatns(String title) {
+    ExampleConstants(String title) {
         this.title = title;
     }
 
