@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -15,11 +16,20 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import net.kem198.todos_api.domain.exception.common.ResourceNotFoundException;
 import net.kem198.todos_api.domain.model.Todo;
+import net.kem198.todos_api.domain.repository.todo.TodoRepository;
 
 @SpringBootTest
 public class TodoServiceImplTests {
     @Autowired
+    TodoRepository todoRepository;
+
+    @Autowired
     TodoService todoService;
+
+    @BeforeEach
+    void setUp() {
+        todoRepository.findAll().forEach((todo) -> todoRepository.delete(todo));
+    }
 
     @Nested
     class FindOneTests {
