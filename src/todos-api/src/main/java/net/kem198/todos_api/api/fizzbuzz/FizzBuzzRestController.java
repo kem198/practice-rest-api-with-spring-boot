@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import net.kem198.todos_api.domain.service.fizzbuzz.FizzBuzzService;
 
 @RestController
-@RequestMapping("/api/v1/fizzbuzz")
+@RequestMapping("/v1/fizzbuzz")
 public class FizzBuzzRestController {
     @Autowired
     private FizzBuzzService fizzBuzzService;

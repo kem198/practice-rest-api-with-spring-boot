@@ -51,7 +51,7 @@ public class TodoRestControllerTests {
             HttpEntity<String> requestEntity = new HttpEntity<>(requestBody, headers);
 
             // Act
-            ResponseEntity<String> response = restTemplate.postForEntity("/api/v1/todos", requestEntity, String.class);
+            ResponseEntity<String> response = restTemplate.postForEntity("/v1/todos", requestEntity, String.class);
 
             // Assert
             assertEquals(HttpStatus.CREATED, response.getStatusCode());
@@ -70,7 +70,7 @@ public class TodoRestControllerTests {
             void returnsBusinessExceptionWhenNotExistsTarget() throws Exception {
                 // Act
                 ResponseEntity<String> response = restTemplate.exchange(
-                        "/api/v1/todos/abc",
+                        "/v1/todos/abc",
                         org.springframework.http.HttpMethod.PUT,
                         null,
                         String.class);

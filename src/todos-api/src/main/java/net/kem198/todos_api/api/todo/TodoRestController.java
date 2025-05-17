@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.http.ResponseEntity;
 
 @RestController
-@RequestMapping("/api/v1/todos")
+@RequestMapping("/v1/todos")
 public class TodoRestController {
 
     @Autowired
