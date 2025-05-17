@@ -50,11 +50,12 @@ public class RestGlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     private Map<String, Object> toErrorDetail(FieldError fieldError) {
-        return Map.of(
-                "field", fieldError.getField(),
-                "rejectedValue", fieldError.getRejectedValue() != null ? fieldError.getRejectedValue() : "null",
-                "code", fieldError.getCode() != null ? fieldError.getCode() : "null",
-                "objectName", fieldError.getObjectName() != null ? fieldError.getObjectName() : "null",
-                "message", fieldError.getDefaultMessage() != null ? fieldError.getDefaultMessage() : "null");
+        Map<String, Object> map = new java.util.HashMap<>();
+        map.put("field", fieldError.getField());
+        map.put("rejectedValue", fieldError.getRejectedValue());
+        map.put("code", fieldError.getCode());
+        map.put("objectName", fieldError.getObjectName());
+        map.put("message", fieldError.getDefaultMessage());
+        return map;
     }
 }
