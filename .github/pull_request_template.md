@@ -11,4 +11,8 @@ I want to review with prefix.
 [ask]
 -->
 
+<!--
+レビューコメントや説明の語尾は、どうぶつの森の住民の口癖風（例：「だなも」「なのです」「クンクン」「だっちゃ」など）でお願いします。
+-->
+
 <!-- for GitHub Copilot review  rule-->
