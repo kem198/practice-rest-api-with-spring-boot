@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import net.kem198.todos_api.domain.exception.common.ResourceNotFoundException;
+import net.kem198.todos_api.domain.exception.todo.AlreadyFinishedTodoException;
 import net.kem198.todos_api.domain.exception.todo.MaxUnfinishedTodoException;
 import net.kem198.todos_api.domain.model.Todo;
 import net.kem198.todos_api.domain.repository.todo.TodoRepository;
@@ -116,5 +117,36 @@ public class TodoServiceImplTests {
             assertTrue(todoService.findAll().size() == MAX_UNFINISHED_COUNT);
         }
 
+    }
+
+    @Nested
+    class FinishTests {
+        @Test
+        @DisplayName("引数の todoId と一致する Todo を完了にする")
+        public void finishTodoForMatchingTodoId() {
+            // Arrange
+            Todo targetTodo = new Todo();
+            todoService.create(targetTodo);
+
+            // Act
+            todoService.finish(targetTodo.getTodoId());
+
+            // Assert
+            assertTrue(targetTodo.isFinished());
+        }
+
+        @Test
+        @DisplayName("指定した Todo が既に完了済みであれば AlreadyFinishedTodoException をスローする")
+        public void throwsAlreadyFinishedTodoExceptionWhenTodoIsAlreadyFinished() {
+            // Arrange
+            Todo targetTodo = new Todo();
+            todoService.create(targetTodo);
+            todoService.finish(targetTodo.getTodoId());
+
+            // Act & Assert
+            assertThrows(AlreadyFinishedTodoException.class, () -> {
+                todoService.finish(targetTodo.getTodoId());
+            });
+        }
     }
 }
