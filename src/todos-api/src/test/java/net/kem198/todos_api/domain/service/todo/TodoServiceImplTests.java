@@ -1,6 +1,7 @@
 package net.kem198.todos_api.domain.service.todo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -147,6 +148,24 @@ public class TodoServiceImplTests {
             assertThrows(AlreadyFinishedTodoException.class, () -> {
                 todoService.finish(targetTodo.getTodoId());
             });
+        }
+    }
+
+    @Nested
+    class DeleteTests {
+        @Test
+        @DisplayName("引数の todoId と一致する Todo を削除する")
+        public void deleteTodoForMatchingTodoId() {
+            // Arrange
+            Todo todo = new Todo();
+            todoService.create(todo);
+
+            // Act
+            todoService.delete(todo.getTodoId());
+
+            // Assert
+            assertFalse(todoService.findAll().contains(todo));
+
         }
     }
 }
