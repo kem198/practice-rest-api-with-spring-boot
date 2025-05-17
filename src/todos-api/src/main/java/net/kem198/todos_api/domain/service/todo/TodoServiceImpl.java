@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import net.kem198.todos_api.domain.exception.common.ResourceNotFoundException;
+import net.kem198.todos_api.domain.exception.todo.AlreadyFinishedTodoException;
 import net.kem198.todos_api.domain.exception.todo.MaxUnfinishedTodoException;
 import net.kem198.todos_api.domain.model.Todo;
 import net.kem198.todos_api.domain.repository.todo.TodoRepository;
@@ -60,7 +61,7 @@ public class TodoServiceImpl implements TodoService {
     public Todo finish(String todoId) {
         Todo todo = findOne(todoId);
         if (todo.isFinished()) {
-            throw new ResourceNotFoundException(this.getClass().getName(), todoId);
+            throw new AlreadyFinishedTodoException(this.getClass().getName());
         }
         todo.setFinished(true);
         todoRepository.update(todo);
