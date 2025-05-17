@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import net.kem198.todos_api.domain.exception.common.ResourceNotFoundException;
+import net.kem198.todos_api.domain.exception.todo.MaxUnfinishedTodoException;
 import net.kem198.todos_api.domain.model.Todo;
 import net.kem198.todos_api.domain.repository.todo.TodoRepository;
 
@@ -78,5 +79,42 @@ public class TodoServiceImplTests {
             assertTrue(todoCollection.containsAll(expectedTodoCollection));
             assertEquals(expectedTodoCollection.size(), todoCollection.size());
         }
+    }
+
+    @Nested
+    class CreateTests {
+        @Test
+        @DisplayName("Todo を登録する")
+        public void registersTodo() {
+            // Arrange
+            Todo expectedTodo = new Todo();
+
+            // Act
+            todoService.create(expectedTodo);
+
+            // Assert
+            assertEquals(expectedTodo.getTodoId(), todoService.findOne(expectedTodo.getTodoId()).getTodoId());
+        }
+
+        @Test
+        @DisplayName("未完了 Todo の数が上限に達しているなら MaxUnfinishedTodoException をスローしてタスクを作成しない")
+        public void throwsMaxUnfinishedTodoExceptionAndNotRegisterTodoWhenUnfinishedTasksReachLimit() {
+            // Arrange
+            final long MAX_UNFINISHED_COUNT = 5;
+
+            for (int i = 0; i < MAX_UNFINISHED_COUNT; i++) {
+                Todo todo = new Todo();
+                todo.setFinished(true);
+                todoService.create(todo);
+            }
+            Todo newTodo = new Todo();
+
+            // Act & Assert
+            assertThrows(MaxUnfinishedTodoException.class, () -> {
+                todoService.create(newTodo);
+            });
+            assertTrue(todoService.findAll().size() == MAX_UNFINISHED_COUNT);
+        }
+
     }
 }
