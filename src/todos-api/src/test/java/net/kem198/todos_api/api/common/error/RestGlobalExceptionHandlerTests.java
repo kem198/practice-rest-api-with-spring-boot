@@ -142,14 +142,14 @@ public class RestGlobalExceptionHandlerTests {
             JsonNode errors = responseBody.get("errors");
             assertTrue(
                     StreamSupport.stream(errors.spliterator(), false)
-                            .anyMatch(e -> "todoTitle".equals(e.get("field").asText())
+                            .anyMatch((e) -> "todoTitle".equals(e.get("field").asText())
                                     && e.get("rejectedValue").isNull()
                                     && "NotNull".equals(e.get("code").asText())
                                     && "todoResource".equals(e.get("objectName").asText())
                                     && "must not be null".equals(e.get("message").asText())));
             assertTrue(
                     StreamSupport.stream(errors.spliterator(), false)
-                            .anyMatch(e -> "todoDescription".equals(e.get("field").asText())
+                            .anyMatch((e) -> "todoDescription".equals(e.get("field").asText())
                                     && "123456789012345678901234567890123456789012345678901"
                                             .equals(e.get("rejectedValue").asText())
                                     && "Size".equals(e.get("code").asText())
