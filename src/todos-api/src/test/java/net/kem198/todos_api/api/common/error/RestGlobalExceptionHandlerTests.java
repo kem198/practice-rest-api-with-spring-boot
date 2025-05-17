@@ -46,7 +46,7 @@ public class RestGlobalExceptionHandlerTests {
         void returns500InternalServerErrorWhenSystemError() throws JsonMappingException, JsonProcessingException {
             // Act
             ResponseEntity<String> response = restTemplate.getForEntity(
-                    "/api/v1/error/throw-system-error",
+                    "/v1/error/throw-system-error",
                     String.class);
 
             // Assert
@@ -61,7 +61,7 @@ public class RestGlobalExceptionHandlerTests {
         void notReturnsStackTraceWhenSystemError() throws JsonMappingException, JsonProcessingException {
             // Act
             ResponseEntity<String> response = restTemplate.getForEntity(
-                    "/api/v1/error/throw-system-error",
+                    "/v1/error/throw-system-error",
                     String.class);
 
             // Assert
@@ -88,7 +88,7 @@ public class RestGlobalExceptionHandlerTests {
             HttpEntity<String> requestEntity = new HttpEntity<>(requestBody, headers);
 
             // Act
-            ResponseEntity<String> response = restTemplate.postForEntity("/api/v1/todos", requestEntity, String.class);
+            ResponseEntity<String> response = restTemplate.postForEntity("/v1/todos", requestEntity, String.class);
 
             // Assert
             assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
@@ -113,7 +113,7 @@ public class RestGlobalExceptionHandlerTests {
             HttpEntity<String> requestEntity = new HttpEntity<>(requestBody, headers);
 
             // Act
-            ResponseEntity<String> response = restTemplate.postForEntity("/api/v1/todos", requestEntity, String.class);
+            ResponseEntity<String> response = restTemplate.postForEntity("/v1/todos", requestEntity, String.class);
 
             // Assert
             // 配列の順序が保証されないため Set に変換して検証する

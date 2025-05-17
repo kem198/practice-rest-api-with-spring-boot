@@ -17,10 +17,10 @@
     - [Run API Server](#run-api-server)
     - [Run DB Server on Docker Container](#run-db-server-on-docker-container)
     - [Demo APIs](#demo-apis)
-        - [`/api/v1/greeting`](#apiv1greeting)
-        - [`/api/v1/error`](#apiv1error)
-        - [`/api/v1/fizzbuzz`](#apiv1fizzbuzz)
-        - [`/api/v1/todos`](#apiv1todos)
+        - [`/v1/greeting`](#apiv1greeting)
+        - [`/v1/error`](#apiv1error)
+        - [`/v1/fizzbuzz`](#apiv1fizzbuzz)
+        - [`/v1/todos`](#apiv1todos)
 
 ## Requirements
 
@@ -108,7 +108,7 @@ $ ./gradlew build
 $ java -jar build/libs/todos-api-0.0.1-SNAPSHOT.jar
 
 # Request to API
-$ curl 'http://localhost:8080/api/v1/greeting'
+$ curl 'http://localhost:8080/v1/greeting'
 {"id":1,"content":"Hello, World!"}%
 ```
 
@@ -154,10 +154,10 @@ todos_api_db=# exit
 
 ### Demo APIs
 
-#### `/api/v1/greeting`
+#### `/v1/greeting`
 
 ```sh
-$ curl -i -X GET 'http://localhost:8080/api/v1/greeting/hello'
+$ curl -i -X GET 'http://localhost:8080/v1/greeting/hello'
 HTTP/1.1 200
 Content-Type: application/json
 Transfer-Encoding: chunked
@@ -165,7 +165,7 @@ Date: Mon, 28 Apr 2025 05:32:49 GMT
 
 {"id":1,"content":"Hello, World!"}%
 
-$ curl -i -X GET 'http://localhost:8080/api/v1/greeting/hello?name=kem198'
+$ curl -i -X GET 'http://localhost:8080/v1/greeting/hello?name=kem198'
 HTTP/1.1 200
 Content-Type: application/json
 Transfer-Encoding: chunked
@@ -174,10 +174,10 @@ Date: Mon, 28 Apr 2025 05:33:03 GMT
 {"id":2,"content":"Hello, kem198!"}%
 ```
 
-#### `/api/v1/error`
+#### `/v1/error`
 
 ```sh
-$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/api/v1/error' | jq
+$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/v1/error' | jq
 HTTP/1.1 500
 Content-Type: application/problem+json
 Transfer-Encoding: chunked
@@ -188,10 +188,10 @@ Connection: close
   "type": "about:blank",
   "title": "Internal Server Error",
   "status": 500,
-  "instance": "/api/v1/error"
+  "instance": "/v1/error"
 }
 
-$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/api/v1/error/detail' | jq
+$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/v1/error/detail' | jq
 HTTP/1.1 500
 Content-Type: application/problem+json
 Transfer-Encoding: chunked
@@ -203,10 +203,10 @@ Connection: close
   "title": "Internal Server Error",
   "status": 500,
   "detail": "Customized error details",
-  "instance": "/api/v1/error/detail"
+  "instance": "/v1/error/detail"
 }
 
-$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/api/v1/error/throw-system-error' | jq
+$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/v1/error/throw-system-error' | jq
 HTTP/1.1 500
 Content-Type: application/problem+json
 Transfer-Encoding: chunked
@@ -218,14 +218,14 @@ Connection: close
   "title": "Internal Server Error",
   "status": 500,
   "detail": "An unexpected error occurred. Please contact support if the problem persists.",
-  "instance": "/api/v1/error/throw-system-error"
+  "instance": "/v1/error/throw-system-error"
 }
 ```
 
-#### `/api/v1/fizzbuzz`
+#### `/v1/fizzbuzz`
 
 ```sh
-$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/api/v1/fizzbuzz/convert?num=3' | jq
+$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/v1/fizzbuzz/convert?num=3' | jq
 HTTP/1.1 200
 Content-Type: application/json
 Transfer-Encoding: chunked
@@ -235,7 +235,7 @@ Date: Mon, 28 Apr 2025 05:43:50 GMT
   "result": "Fizz"
 }
 
-$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/api/v1/fizzbuzz/convert' | jq
+$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/v1/fizzbuzz/convert' | jq
 HTTP/1.1 400
 Content-Type: application/problem+json
 Transfer-Encoding: chunked
@@ -247,10 +247,10 @@ Connection: close
   "title": "Missing Parameter",
   "status": 400,
   "detail": "The 'num' query parameter is required.",
-  "instance": "/api/v1/fizzbuzz"
+  "instance": "/v1/fizzbuzz"
 }
 
-$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/api/v1/fizzbuzz/convert?num=abc' | jq
+$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/v1/fizzbuzz/convert?num=abc' | jq
 HTTP/1.1 400
 Content-Type: application/problem+json
 Transfer-Encoding: chunked
@@ -262,14 +262,14 @@ Connection: close
   "title": "Invalid Number Format",
   "status": 400,
   "detail": "The 'num' query parameter must be a valid integer.",
-  "instance": "/api/v1/fizzbuzz"
+  "instance": "/v1/fizzbuzz"
 }
 ```
 
-#### `/api/v1/todos`
+#### `/v1/todos`
 
 ```sh
-$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/api/v1/todos' | jq
+$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/v1/todos' | jq
 HTTP/1.1 200
 Content-Type: application/json
 Transfer-Encoding: chunked
@@ -277,7 +277,7 @@ Date: Sun, 04 May 2025 09:31:59 GMT
 
 []
 
-$ curl -s -D /dev/stderr -X POST http://localhost:8080/api/v1/todos \
+$ curl -s -D /dev/stderr -X POST http://localhost:8080/v1/todos \
 -H 'Content-Type: application/json' \
 -d '{"todoTitle": "Hello World!"}' | jq
 HTTP/1.1 201
@@ -292,7 +292,7 @@ Date: Sun, 04 May 2025 09:30:59 GMT
   "createdAt": "2025-05-04T09:30:59.728+00:00"
 }
 
-$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/api/v1/todos' | jq
+$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/v1/todos' | jq
 HTTP/1.1 200
 Content-Type: application/json
 Transfer-Encoding: chunked
@@ -307,7 +307,7 @@ Date: Sun, 04 May 2025 09:31:26 GMT
   }
 ]
 
-$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/api/v1/todos/a9502e35-b177-43ea-9639-ba529360e2cc' | jq
+$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/v1/todos/a9502e35-b177-43ea-9639-ba529360e2cc' | jq
 HTTP/1.1 200
 Content-Type: application/json
 Transfer-Encoding: chunked
@@ -320,7 +320,7 @@ Date: Sun, 04 May 2025 09:40:29 GMT
   "createdAt": "2025-05-04T09:40:06.785+00:00"
 }
 
-$ curl -s -D /dev/stderr -X PUT 'http://localhost:8080/api/v1/todos/a9502e35-b177-43ea-9639-ba529360e2cc' | jq
+$ curl -s -D /dev/stderr -X PUT 'http://localhost:8080/v1/todos/a9502e35-b177-43ea-9639-ba529360e2cc' | jq
 HTTP/1.1 200
 Content-Type: application/json
 Transfer-Encoding: chunked
@@ -333,10 +333,10 @@ Date: Sun, 04 May 2025 09:47:41 GMT
   "createdAt": "2025-05-04T09:46:24.529+00:00"
 }
 
-$ curl -s -D /dev/stderr -X DELETE 'http://localhost:8080/api/v1/todos/a9502e35-b177-43ea-9639-ba529360e2cc' | jq
+$ curl -s -D /dev/stderr -X DELETE 'http://localhost:8080/v1/todos/a9502e35-b177-43ea-9639-ba529360e2cc' | jq
 HTTP/1.1 204 Date: Sun, 04 May 2025 09:51:12 GMT
 
-$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/api/v1/todos' | jq
+$ curl -s -D /dev/stderr -X GET 'http://localhost:8080/v1/todos' | jq
 HTTP/1.1 200
 Content-Type: application/json
 Transfer-Encoding: chunked

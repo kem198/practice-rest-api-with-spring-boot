@@ -38,7 +38,7 @@ public class FizzBuzzRestControllerTests {
             @DisplayName("\"?num=3\" でリクエストされた場合は {\"result\": \"Fizz\"} を返す")
             void returnsFizzFor3() throws Exception {
                 // Act
-                ResponseEntity<String> response = restTemplate.getForEntity("/api/v1/fizzbuzz/convert?num=3",
+                ResponseEntity<String> response = restTemplate.getForEntity("/v1/fizzbuzz/convert?num=3",
                         String.class);
 
                 // Assert
@@ -55,7 +55,7 @@ public class FizzBuzzRestControllerTests {
             @DisplayName("パラメータ無しでリクエストされた場合はエラーレスポンスを返す")
             void returnsErrorResponseForMissingParameter() throws Exception {
                 // Act
-                ResponseEntity<String> response = restTemplate.getForEntity("/api/v1/fizzbuzz/convert", String.class);
+                ResponseEntity<String> response = restTemplate.getForEntity("/v1/fizzbuzz/convert", String.class);
 
                 // Assert
                 assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
@@ -68,7 +68,7 @@ public class FizzBuzzRestControllerTests {
             @DisplayName("数値として扱えない値でリクエストされた場合はエラーレスポンスを返す")
             void returnsErrorResponseForInvalidNumber() throws Exception {
                 // Act
-                ResponseEntity<String> response = restTemplate.getForEntity("/api/v1/fizzbuzz/convert?num=abc",
+                ResponseEntity<String> response = restTemplate.getForEntity("/v1/fizzbuzz/convert?num=abc",
                         String.class);
 
                 // Assert

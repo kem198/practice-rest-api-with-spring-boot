@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import net.kem198.todos_api.domain.service.greeting.GreetingService;
 
 @RestController
-@RequestMapping("/api/v1/greeting")
+@RequestMapping("/v1/greeting")
 public class GreetingRestController {
     @Autowired
     private GreetingService GreetingService;
