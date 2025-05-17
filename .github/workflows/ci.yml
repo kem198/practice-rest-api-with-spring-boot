@@ -32,7 +32,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
       - name: Build
-        run: ./gradlew build --no-daemon
+        run: |
+          pwd
+          ./gradlew build --no-daemon
       - name: Test
         run: ./gradlew test --no-daemon
       # TODO: Lint 環境整ったら有効化する
