@@ -21,20 +21,6 @@ import net.kem198.todos_api.domain.exception.common.BusinessException;
 @ControllerAdvice
 public class RestGlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(BusinessException.class)
-    public ResponseEntity<ProblemDetail> handleBusinessException(BusinessException ex) {
-        return ResponseEntity
-                .status(ex.getProblemDetail().getStatus())
-                .body(ex.getProblemDetail());
-    }
-
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<ProblemDetail> handleSystemError(Exception ex) {
-        ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.INTERNAL_SERVER_ERROR);
-        problemDetail.setDetail("An unexpected error occurred. Please contact support if the problem persists.");
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(problemDetail);
-    }
-
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(
             MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
@@ -47,6 +33,20 @@ public class RestGlobalExceptionHandler extends ResponseEntityExceptionHandler {
         problemDetail.setProperty("errors", errors);
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(problemDetail);
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ProblemDetail> handleSystemError(Exception ex) {
+        ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.INTERNAL_SERVER_ERROR);
+        problemDetail.setDetail("An unexpected error occurred. Please contact support if the problem persists.");
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(problemDetail);
+    }
+
+    @ExceptionHandler(BusinessException.class)
+    public ResponseEntity<ProblemDetail> handleBusinessException(BusinessException ex) {
+        return ResponseEntity
+                .status(ex.getProblemDetail().getStatus())
+                .body(ex.getProblemDetail());
     }
 
     private Map<String, Object> toErrorDetail(FieldError fieldError) {
