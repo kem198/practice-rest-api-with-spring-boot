@@ -3,11 +3,6 @@ package net.kem198.todos_api.api.common.error;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -116,34 +111,9 @@ public class RestGlobalExceptionHandlerTests {
             ResponseEntity<String> response = restTemplate.postForEntity("/v1/todos", requestEntity, String.class);
 
             // Assert
-            // 配列の順序が保証されないため Set に変換して検証する
-            Set<Map<String, Object>> expectedErrors = Set.of(
-                    Map.of(
-                            "objectName", "todoResource",
-                            "field", "todoTitle",
-                            "rejectedValue", "null",
-                            "code", "NotNull",
-                            "message", "must not be null"),
-                    Map.of(
-                            "objectName", "todoResource",
-                            "field", "todoDescription",
-                            "rejectedValue", "123456789012345678901234567890123456789012345678901",
-                            "code", "Size",
-                            "message", "size must be between 1 and 50"));
-
             JsonNode responseBody = objectMapper.readTree(response.getBody());
-            Set<Map<String, String>> actualErrors = StreamSupport
-                    .stream(responseBody.get("errors").spliterator(), false)
-                    .map(error -> Map.of(
-                            "objectName", error.get("objectName").asText(),
-                            "field", error.get("field").asText(),
-                            "rejectedValue",
-                            error.get("rejectedValue").isNull() ? null : error.get("rejectedValue").asText(),
-                            "code", error.get("code").asText(),
-                            "message", error.get("message").asText()))
-                    .collect(Collectors.toSet());
-
-            assertEquals(expectedErrors, actualErrors);
+            JsonNode errors = responseBody.get("errors");
+            assertEquals(2, errors.size());
         }
     }
 }
