@@ -117,7 +117,6 @@ public class TodoServiceImplTests {
             });
             assertTrue(todoService.findAll().size() == MAX_UNFINISHED_COUNT);
         }
-
     }
 
     @Nested
@@ -165,7 +164,6 @@ public class TodoServiceImplTests {
 
             // Assert
             assertFalse(todoService.findAll().contains(todo));
-
         }
     }
 }
