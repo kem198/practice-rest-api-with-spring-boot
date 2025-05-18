@@ -1,4 +1,4 @@
-package net.kem198.todos_api.domain.repository.todo;
+package net.kem198.todos_api.infra.repository.todo;
 
 import java.util.Collection;
 import java.util.Map;
@@ -7,6 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.springframework.stereotype.Repository;
 
 import net.kem198.todos_api.domain.model.Todo;
+import net.kem198.todos_api.domain.repository.todo.TodoRepository;
 
 @Repository
 public class TodoRepositoryImpl implements TodoRepository {
