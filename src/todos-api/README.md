@@ -17,10 +17,10 @@
     - [Run API Server](#run-api-server)
     - [Run DB Server on Docker Container](#run-db-server-on-docker-container)
     - [Demo APIs](#demo-apis)
-        - [`/v1/greeting`](#apiv1greeting)
-        - [`/v1/error`](#apiv1error)
-        - [`/v1/fizzbuzz`](#apiv1fizzbuzz)
-        - [`/v1/todos`](#apiv1todos)
+        - [`/v1/greeting`](#v1greeting)
+        - [`/v1/error`](#v1error)
+        - [`/v1/fizzbuzz`](#v1fizzbuzz)
+        - [`/v1/todos`](#v1todos)
 
 ## Requirements
 
@@ -129,11 +129,11 @@ $ vim .env
 $ docker compose up -d
 
 # Connect to the database and execute queries
-$ docker compose exec db psql -U postgres -d todos_api_db
+$ docker compose exec db psql -U postgres -d todos_db
 psql (17.4 (Debian 17.4-1.pgdg120+2))
 Type "help" for help.
 
-todos_api_db=# \d
+todos_db=# \d
                List of relations
  Schema |      Name       |   Type   |  Owner
 --------+-----------------+----------+----------
@@ -141,7 +141,7 @@ todos_api_db=# \d
  public | examples_id_seq | sequence | postgres
 (2 rows)
 
-todos_api_db=# SELECT * FROM examples;
+todos_db=# SELECT * FROM examples;
  id |   name    |         created_at
 ----+-----------+----------------------------
   1 | Example 1 | 2025-05-01 21:24:38.143514
@@ -149,7 +149,7 @@ todos_api_db=# SELECT * FROM examples;
   3 | Example 3 | 2025-05-01 21:24:38.143514
 (3 rows)
 
-todos_api_db=# exit
+todos_db=# exit
 ```
 
 ### Demo APIs
