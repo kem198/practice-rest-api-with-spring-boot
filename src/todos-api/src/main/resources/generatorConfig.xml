@@ -14,14 +14,14 @@
             <property name="enableSubPackages" value="false" />
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="net.kem198.todos_api.infra.mapper" targetProject="src/main/resources">
+        <sqlMapGenerator targetPackage="net.kem198.todos_api.infrastructure.entity" targetProject="src/main/resources">
             <property name="enableSubPackages" value="false" />
         </sqlMapGenerator>
 
-        <javaClientGenerator type="XMLMAPPER" targetPackage="net.kem198.todos_api.infra.mapper" targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="net.kem198.todos_api.infrastructure.entity" targetProject="src/main/java">
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
 
-        <table schema="public" tableName="todos" domainObjectName="Todo" />
+        <table schema="public" tableName="todos" />
     </context>
 </generatorConfiguration>
