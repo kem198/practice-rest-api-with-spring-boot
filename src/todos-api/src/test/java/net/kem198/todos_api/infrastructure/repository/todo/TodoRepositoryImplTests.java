@@ -1,4 +1,4 @@
-package net.kem198.todos_api.infra.repository.todo;
+package net.kem198.todos_api.infrastructure.repository.todo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="default" targetRuntime="MyBatis3">
+        <jdbcConnection driverClass="org.postgresql.Driver"
+                        connectionURL="jdbc:postgresql://localhost:54322/todos_db"
+                        userId="postgres"
+                        password="__ENTER_POSTGRES_PASSWORD_HERE__">
+        </jdbcConnection>
+
+        <javaModelGenerator targetPackage="net.kem198.todos_api.infrastructure.entity" targetProject="src/main/java">
+            <property name="enableSubPackages" value="false" />
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="net.kem198.todos_api.infrastructure.entity" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="false" />
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="net.kem198.todos_api.infrastructure.entity" targetProject="src/main/java">
+            <property name="enableSubPackages" value="false" />
+        </javaClientGenerator>
+
+        <table schema="public" tableName="todos" />
+    </context>
+</generatorConfiguration>
